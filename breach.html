@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="id" data-sky="clouds" data-time="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://api.openweathermap.org https://api.pwnedpasswords.com; worker-src blob:; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Breach Radar · WEACRYPT</title>
+<meta name="description" content="Cek apakah password-mu pernah bocor tanpa mengirim password-nya (k-anonymity).">
+<meta name="theme-color" content="#3D5A2A">
+<meta property="og:title" content="Breach Radar · WEACRYPT">
+<meta property="og:description" content="Cek apakah password-mu pernah bocor tanpa mengirim password-nya (k-anonymity).">
+<meta property="og:image" content="assets/img/og-image.png">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/tools.css">
+</head>
+<body class="page-breach">
+<a class="skip" href="#main">Lewati ke konten</a>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="index.html"><span data-icon="logo"></span><span>WEACRYPT</span></a>
+    <nav class="topbar-nav" aria-label="Navigasi utama">
+      <a href="dashboard.html" class="hide-sm">Control Room</a>
+      <details class="navmenu">
+        <summary aria-current="true">Alat</summary>
+        <div class="navmenu-list">
+          <a href="dashboard.html" class="show-sm"><span data-icon="dashboard"></span><span>Control Room<span class="hint">Langit, entropi, ledger</span></span></a>
+          <a href="generate.html"><span data-icon="forge"></span><span>Key Forge<span class="hint">Password, passphrase, PIN, kunci</span></span></a>
+          <a href="breach.html" aria-current="page"><span data-icon="radar"></span><span>Breach Radar<span class="hint">Cek kebocoran password</span></span></a>
+          <a href="seal.html"><span data-icon="seal"></span><span>Sealed Message<span class="hint">Segel pesan jadi link</span></span></a>
+          <a href="open.html"><span data-icon="unlock"></span><span>Buka pesan<span class="hint">Buka link atau blok tersegel</span></span></a>
+          <a href="locker.html"><span data-icon="locker"></span><span>File Locker<span class="hint">Kunci file dengan AES-256</span></span></a>
+          <a href="split.html"><span data-icon="split"></span><span>Secret Splitter<span class="hint">Pecah seed phrase</span></span></a>
+          <a href="ledger.html"><span data-icon="ledger"></span><span>Entropy Ledger<span class="hint">Rantai aktivitas tamper-evident</span></span></a>
+          <a href="lab.html"><span data-icon="lab"></span><span>Attack Lab<span class="hint">Serangan nyata dan uji acak</span></span></a>
+          <a href="verify.html"><span data-icon="verify"></span><span>Integrity Checker<span class="hint">Hash dan cocokkan file</span></span></a>
+          <a href="about.html" class="show-sm"><span data-icon="about"></span><span>Tentang<span class="hint">Cara kerja, privasi, FAQ</span></span></a>
+        </div>
+      </details>
+      <a href="about.html" class="hide-sm">Tentang</a>
+    </nav>
+    <div data-weather-chip></div>
+  </div>
+</header>
+<main id="main" class="wrap tool-page">
+  <section class="tool-hero">
+    <div>
+      <p class="eyebrow">Breach Radar</p>
+      <h1>Pernah bocor? Cek tanpa mengirim password-nya.</h1>
+      <p class="lede">Password di-hash SHA-1 di browsermu. Yang dikirim ke Have I Been Pwned hanya 5 karakter pertama hash. Pencocokan sisanya terjadi di sini.</p>
+    </div>
+  </section>
+
+  <section class="howto" aria-label="Cara pakai halaman ini">
+    <details class="howto-box" data-howto="breach" open>
+      <summary><span class="howto-icon" data-icon="about"></span><span class="howto-title">Cara pakai</span><span class="howto-count">4 langkah</span></summary>
+      <ol class="howto-steps">
+        <li><span class="howto-num" aria-hidden="true">1</span><div><strong>Ketik password</strong><p>Password yang mau dicek tetap di browsermu dan tidak disimpan.</p></div></li>
+        <li><span class="howto-num" aria-hidden="true">2</span><div><strong>Tekan Cek kebocoran</strong><p>Password di-hash SHA-1. Hanya 5 karakter awal hash yang dikirim ke Have I Been Pwned; pencocokan sisanya terjadi di sini.</p></div></li>
+        <li><span class="howto-num" aria-hidden="true">3</span><div><strong>Baca hasilnya</strong><p>Merah berarti pernah bocor: ganti di semua akun. Hijau berarti belum ditemukan, tapi tetap lihat analisis kekuatannya.</p></div></li>
+        <li><span class="howto-num" aria-hidden="true">4</span><div><strong>Cek banyak sekaligus</strong><p>Pakai tab Cek massal untuk sampai 50 password, satu per baris.</p></div></li>
+      </ol>
+    </details>
+  </section>
+
+  <div class="tabs">
+    <div class="tablist" role="tablist" aria-label="Mode cek">
+      <button role="tab" id="tab-single" data-tab="single" aria-controls="pane-single" aria-selected="true">Satu password</button>
+      <button role="tab" id="tab-bulk" data-tab="bulk" aria-controls="pane-bulk" aria-selected="false" tabindex="-1">Cek massal</button>
+    </div>
+
+    <div role="tabpanel" id="pane-single" aria-labelledby="tab-single">
+      <div class="tool-grid">
+        <section class="panel" aria-labelledby="in-title">
+          <h2 id="in-title" class="panel-title">Password yang dicek</h2>
+          <form id="form-check" class="stack" novalidate>
+            <div class="field">
+              <label for="pw">Password</label>
+              <div class="field-row">
+                <input type="password" id="pw" class="secret-input" autocomplete="off" spellcheck="false" autocapitalize="off" autocorrect="off" maxlength="256">
+                <button type="button" class="btn btn-secondary" id="pw-toggle" aria-pressed="false" aria-controls="pw"><span data-icon="eye"></span><span>Tampilkan</span></button>
+              </div>
+            </div>
+            <div class="row">
+              <button type="submit" class="btn btn-primary" id="btn-check" data-needs-crypto>Cek kebocoran</button>
+              <button type="button" class="btn btn-ghost" id="btn-clear">Hapus</button>
+            </div>
+          </form>
+          <p class="hint">Password tidak disimpan, tidak dicatat ke ledger, dan tidak pernah keluar dari tab ini.</p>
+        </section>
+
+        <section class="panel" aria-labelledby="ana-title">
+          <h2 id="ana-title" class="panel-title">Analisis kekuatan</h2>
+          <p class="hint" id="ana-source"></p>
+          <div id="ana-strength"></div>
+          <ul class="feedback" id="ana-feedback" aria-live="polite"></ul>
+          <div class="table-wrap">
+            <table class="crack-table">
+              <caption class="sr-only">Estimasi waktu crack</caption>
+              <thead><tr><th scope="col">Model penyerang</th><th scope="col">Tebakan</th><th scope="col">Waktu rata-rata</th></tr></thead>
+              <tbody id="ana-crack"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <section class="panel kanon" id="kanon" aria-labelledby="kanon-title" hidden>
+        <div class="row row-between">
+          <h2 id="kanon-title" class="panel-title">Apa yang terkirim</h2>
+          <button type="button" class="btn btn-ghost btn-sm" id="btn-skip">Lewati animasi</button>
+        </div>
+        <div class="kanon-stage">
+          <div class="kanon-side kanon-browser">
+            <p class="kanon-label"><span data-icon="cpu"></span> Browser kamu</p>
+            <p class="kanon-hash mono" id="kanon-hash" aria-label="Hash SHA-1"></p>
+            <p class="hint">35 karakter sisanya tidak pernah meninggalkan perangkat.</p>
+          </div>
+          <div class="kanon-flight" aria-hidden="true"><span class="mono" id="kanon-fly"></span></div>
+          <div class="kanon-side kanon-cloud">
+            <p class="kanon-label"><span data-icon="cloud"></span> api.pwnedpasswords.com</p>
+            <p class="kanon-prefix mono" id="kanon-prefix">-----</p>
+            <p class="hint">Server membalas ratusan suffix yang berawalan sama, plus padding acak.</p>
+          </div>
+        </div>
+        <p class="sr-only" id="kanon-live" aria-live="polite"></p>
+      </section>
+
+      <div id="result" class="result-area" aria-live="polite"></div>
+    </div>
+
+    <div role="tabpanel" id="pane-bulk" aria-labelledby="tab-bulk" hidden>
+      <section class="panel" aria-labelledby="bulk-title">
+        <h2 id="bulk-title" class="panel-title">Cek massal</h2>
+        <p class="panel-sub">Satu password per baris, maksimal 50. Dicek berurutan dengan jeda 200 ms. Hasil ditampilkan tersamar.</p>
+        <div class="field">
+          <label for="bulk-input">Daftar password</label>
+          <textarea id="bulk-input" class="mono secret-input" rows="8" autocomplete="off" spellcheck="false" autocapitalize="off" autocorrect="off"></textarea>
+          <p class="counter" id="bulk-counter">0 / 50 baris</p>
+        </div>
+        <div class="row">
+          <button type="button" class="btn btn-primary" id="btn-bulk" data-needs-crypto>Cek semua</button>
+          <button type="button" class="btn btn-ghost" id="btn-bulk-clear">Hapus</button>
+        </div>
+        <div class="table-wrap">
+          <table class="bulk-table" id="bulk-table" hidden>
+            <caption class="sr-only">Hasil cek massal</caption>
+            <thead><tr><th scope="col">#</th><th scope="col">Password</th><th scope="col">Hasil</th><th scope="col" class="num">Muncul</th></tr></thead>
+            <tbody id="bulk-body"></tbody>
+          </table>
+        </div>
+        <p class="sr-only" id="bulk-live" aria-live="polite"></p>
+      </section>
+    </div>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Data cuaca: <a href="https://openweathermap.org/" rel="noopener">OpenWeatherMap</a>. Cek kebocoran: <a href="https://haveibeenpwned.com/Passwords" rel="noopener">Have I Been Pwned, Pwned Passwords</a>. Wordlist: <a href="https://www.eff.org/dice" rel="noopener">EFF</a> (CC BY 3.0 US). Inspirasi: Cloudflare LavaRand.</p>
+    <p>Dibuat oleh Nafhan. Semua alat berjalan di browsermu, tanpa akun, tanpa server. <a href="about.html">Cara kerja dan privasi</a>.</p>
+  </div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js" integrity="sha384-jhGcGHNZytnBnH1wbEM3KxJYyRDy9Q0QLKjE65xk+aMqXFCdvFuYIjzMWAAWBBtR" crossorigin="anonymous" referrerpolicy="no-referrer" async></script>
+<script src="js/config.js"></script>
+<script src="js/core/ew.js"></script>
+<script src="js/core/weather.js"></script>
+<script src="js/core/theme.js"></script>
+<script src="js/core/crypto.js"></script>
+<script src="js/core/entropy.js"></script>
+<script src="js/core/strength.js"></script>
+<script src="js/data/common-passwords.js"></script>
+<script src="js/core/hibp.js"></script>
+<script src="js/workers/crack-worker.js"></script>
+<script src="js/core/ledger.js"></script>
+<script src="js/core/ui.js"></script>
+<script src="js/pages/breach.js"></script>
+</body>
+</html>

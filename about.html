@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="id" data-sky="clouds" data-time="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://api.openweathermap.org https://api.pwnedpasswords.com; worker-src blob:; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Tentang · WEACRYPT</title>
+<meta name="description" content="Cara kerja mixer, model ancaman, privasi, kredit, dan self-test WEACRYPT.">
+<meta name="theme-color" content="#3D5A2A">
+<meta property="og:title" content="Tentang · WEACRYPT">
+<meta property="og:description" content="Cara kerja mixer, model ancaman, privasi, kredit, dan self-test WEACRYPT.">
+<meta property="og:image" content="assets/img/og-image.png">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/tools.css">
+</head>
+<body class="page-about">
+<a class="skip" href="#main">Lewati ke konten</a>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="index.html"><span data-icon="logo"></span><span>WEACRYPT</span></a>
+    <nav class="topbar-nav" aria-label="Navigasi utama">
+      <a href="dashboard.html" class="hide-sm">Control Room</a>
+      <details class="navmenu">
+        <summary>Alat</summary>
+        <div class="navmenu-list">
+          <a href="dashboard.html" class="show-sm"><span data-icon="dashboard"></span><span>Control Room<span class="hint">Langit, entropi, ledger</span></span></a>
+          <a href="generate.html"><span data-icon="forge"></span><span>Key Forge<span class="hint">Password, passphrase, PIN, kunci</span></span></a>
+          <a href="breach.html"><span data-icon="radar"></span><span>Breach Radar<span class="hint">Cek kebocoran password</span></span></a>
+          <a href="seal.html"><span data-icon="seal"></span><span>Sealed Message<span class="hint">Segel pesan jadi link</span></span></a>
+          <a href="open.html"><span data-icon="unlock"></span><span>Buka pesan<span class="hint">Buka link atau blok tersegel</span></span></a>
+          <a href="locker.html"><span data-icon="locker"></span><span>File Locker<span class="hint">Kunci file dengan AES-256</span></span></a>
+          <a href="split.html"><span data-icon="split"></span><span>Secret Splitter<span class="hint">Pecah seed phrase</span></span></a>
+          <a href="ledger.html"><span data-icon="ledger"></span><span>Entropy Ledger<span class="hint">Rantai aktivitas tamper-evident</span></span></a>
+          <a href="lab.html"><span data-icon="lab"></span><span>Attack Lab<span class="hint">Serangan nyata dan uji acak</span></span></a>
+          <a href="verify.html"><span data-icon="verify"></span><span>Integrity Checker<span class="hint">Hash dan cocokkan file</span></span></a>
+          <a href="about.html" class="show-sm"><span data-icon="about"></span><span>Tentang<span class="hint">Cara kerja, privasi, FAQ</span></span></a>
+        </div>
+      </details>
+      <a href="about.html" class="hide-sm" aria-current="page">Tentang</a>
+    </nav>
+    <div data-weather-chip></div>
+  </div>
+</header>
+<main id="main" class="wrap-narrow tool-page about">
+  <section class="tool-hero">
+    <div>
+      <p class="eyebrow">Tentang WEACRYPT</p>
+      <h1>Langit yang bikin unik, matematika yang bikin aman.</h1>
+      <p class="lede">Cara kerja, apa yang dilindungi dan tidak, ke mana data pergi, dan siapa yang karyanya dipakai.</p>
+    </div>
+  </section>
+
+  <section class="panel selftest" id="selftest" aria-labelledby="st-title" hidden>
+    <div class="row row-between">
+      <h2 id="st-title" class="panel-title">Self-test</h2>
+      <p class="tag" id="st-summary" aria-live="polite">Menjalankan…</p>
+    </div>
+    <p class="hint">Test vector dan uji kompatibilitas yang berjalan di browser ini. Tidak menyentuh ledger atau penyimpananmu.</p>
+    <div class="table-wrap">
+      <table>
+        <caption class="sr-only">Hasil self-test</caption>
+        <thead><tr><th scope="col">Uji</th><th scope="col">Detail</th><th scope="col">Hasil</th></tr></thead>
+        <tbody id="st-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <article class="prose">
+    <section aria-labelledby="h-name">
+      <h2 id="h-name">Nama WEACRYPT</h2>
+      <p><strong>WEA</strong>ther en<strong>CRYPT</strong>ion: enkripsi yang hidup bersama cuaca. Setiap password, pesan tersegel, file terkunci, dan blok ledger membawa stempel langit Bandung saat ia dibuat. Tapi seperti dijelaskan di bawah, cuaca hanya memberi identitas. Yang menjaga keamanan selalu matematika.</p>
+    </section>
+
+    <section aria-labelledby="h-why">
+      <h2 id="h-why">Kenapa cuaca tidak dipakai sebagai rahasia</h2>
+      <p>Ide awal proyek ini adalah menurunkan kunci kriptografi dari data cuaca. Ide itu rusak, dan WEACRYPT sengaja dibangun di atas koreksinya:</p>
+      <ol>
+        <li><strong>Data OpenWeatherMap itu publik.</strong> Siapa pun yang tahu kota dan kira-kira jamnya bisa memanggil endpoint yang sama dan mendapat angka yang sama.</li>
+        <li><strong>Resolusinya rendah dan jarang berubah.</strong> Tanpa API pun ruang kemungkinannya sekitar 2<sup>48</sup>, jebol dalam hitungan jam dengan GPU. Lihat buktinya di <a href="lab.html">Attack Lab</a>.</li>
+        <li><strong>Cloudflare LavaRand bukan bukti sebaliknya.</strong> LavaRand memakai noise kamera yang privat, dan hasilnya hanya salah satu input tambahan yang dicampur dengan entropi OS. Kalau kamera mati, sistem tetap aman karena entropi OS.</li>
+      </ol>
+      <p>Jadi di sini cuaca dipakai untuk visual dan identitas, sebagai pencampur tambahan, sebagai stempel konteks di setiap artefak, dan sebagai bahan edukasi. Keamanan selalu bersandar pada CSPRNG browser dan algoritma standar: AES-GCM, PBKDF2, HKDF, SHA-256, dan Shamir.</p>
+    </section>
+
+    <section aria-labelledby="h-mixer">
+      <h2 id="h-mixer">Cara kerja mixer</h2>
+      <svg class="mixer-diagram mixer-lg" viewBox="0 0 560 220" role="img" aria-labelledby="ab-mix-t ab-mix-d">
+        <title id="ab-mix-t">Diagram mixer WEACRYPT</title>
+        <desc id="ab-mix-d">osSeed 256 bit dari crypto.getRandomValues, digest cuaca, dan digest jitter digabung lalu diolah HKDF-SHA256 dengan salt acak menjadi output.</desc>
+        <g class="mx-box mx-os"><rect x="10" y="14" width="190" height="52" rx="10"/><text x="105" y="38">osSeed: 256 bit</text><text x="105" y="56" class="mx-small">crypto.getRandomValues</text></g>
+        <g class="mx-box mx-pub"><rect x="10" y="84" width="190" height="52" rx="10"/><text x="105" y="108">weatherDigest</text><text x="105" y="126" class="mx-small">SHA-256 cuaca, publik</text></g>
+        <g class="mx-box mx-pub"><rect x="10" y="154" width="190" height="52" rx="10"/><text x="105" y="178">jitterDigest</text><text x="105" y="196" class="mx-small">SHA-256 gerakanmu</text></g>
+        <path class="mx-line mx-line-os" d="M200 40 C 250 40, 250 110, 300 110"/>
+        <path class="mx-line" d="M200 110 L 300 110"/>
+        <path class="mx-line" d="M200 180 C 250 180, 250 110, 300 110"/>
+        <g class="mx-box mx-hkdf"><rect x="300" y="80" width="130" height="60" rx="10"/><text x="365" y="106">HKDF-SHA256</text><text x="365" y="124" class="mx-small">salt 16 byte acak</text></g>
+        <path class="mx-line mx-line-os" d="M430 110 L 470 110"/>
+        <g class="mx-box mx-out"><rect x="470" y="84" width="80" height="52" rx="10"/><text x="510" y="115">output</text></g>
+      </svg>
+      <pre class="code-block mono">ikm = osSeed(32) || SHA-256(cuaca) || SHA-256(jitter)
+out = HKDF-SHA256(ikm, salt = random(16), info = "EW/v1/" + purpose)</pre>
+      <p>Karakter dipilih dengan <em>rejection sampling</em>, jadi tidak ada bias modulo. Setelah dipakai, buffer seed diisi nol sebisanya.</p>
+    </section>
+
+    <section aria-labelledby="h-threat">
+      <h2 id="h-threat">Model ancaman</h2>
+      <div class="grid-2">
+        <div class="panel threat threat-yes">
+          <h3><span data-icon="check"></span> Dilindungi</h3>
+          <ul>
+            <li>Penyadapan jaringan: rahasia tidak pernah dikirim.</li>
+            <li>Server bocor: tidak ada server kami yang menyimpan apa pun.</li>
+            <li>Link Sealed Message tercegat, untuk mode link + passphrase.</li>
+            <li>File .ewall dicuri tanpa passphrase.</li>
+            <li>Satu share Shamir dicuri (selama di bawah ambang k).</li>
+          </ul>
+        </div>
+        <div class="panel threat threat-no">
+          <h3><span data-icon="alert"></span> Tidak dilindungi</h3>
+          <ul>
+            <li>Perangkat terinfeksi malware atau keylogger.</li>
+            <li>Penerima pesan yang tidak bisa dipercaya.</li>
+            <li>Screenshot, kamera, atau orang di belakangmu.</li>
+            <li>Link mode "link saja" yang jatuh ke orang lain.</li>
+            <li>Passphrase lemah atau dipakai ulang.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-privacy">
+      <h2 id="h-privacy">Ke mana data pergi</h2>
+      <p>Yang keluar dari browsermu cuma dua: nama kota ke layanan cuaca, dan 5 karakter hash ke layanan cek kebocoran. Buka DevTools, tab Network, lalu pakai alat apa pun untuk membuktikannya.</p>
+      <div class="table-wrap">
+        <table>
+          <caption class="sr-only">Domain eksternal yang dipanggil</caption>
+          <thead><tr><th scope="col">Domain</th><th scope="col">Untuk apa</th><th scope="col">Data yang dikirim</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">api.openweathermap.org</td><td>Cuaca Bandung</td><td>Nama kota + API key</td></tr>
+            <tr><td class="mono">api.pwnedpasswords.com</td><td>Cek kebocoran password</td><td>Hanya 5 karakter pertama SHA-1 (hex)</td></tr>
+            <tr><td class="mono">cdnjs.cloudflare.com</td><td>GSAP, qrcode-generator, zxcvbn</td><td>Tidak ada data user</td></tr>
+            <tr><td class="mono">fonts.googleapis.com, fonts.gstatic.com</td><td>Font</td><td>Tidak ada data user</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Content-Security-Policy di setiap halaman membatasi <code>connect-src</code> ke dua API itu saja. Ledger dan checklist disimpan di <code>localStorage</code> karena tidak berisi rahasia; cache cuaca di <code>sessionStorage</code>. Password, kunci, pesan, dan share hanya hidup di memori tab.</p>
+    </section>
+
+    <section aria-labelledby="h-lavarand">
+      <h2 id="h-lavarand">Inspirasi: Cloudflare LavaRand</h2>
+      <p>Di lobi kantor Cloudflare ada dinding sekitar seratus lava lamp yang direkam kamera. Noise piksel dari video itu di-hash dan dicampur ke pool entropi bersama sumber acak sistem operasi. Kuncinya: video itu privat, dan ia hanya satu dari beberapa input. WEACRYPT meminjam gagasan "alam sebagai sumber acak", tapi mengganti kamera privat dengan langit Bandung yang publik, dan karena itu tidak pernah menghitungnya sebagai keamanan.</p>
+    </section>
+
+    <section aria-labelledby="h-run">
+      <h2 id="h-run">Menjalankan lokal</h2>
+      <p>Buka <code>index.html</code> langsung, atau jalankan server lokal agar semua fitur (termasuk link Sealed Message) bekerja:</p>
+      <pre class="code-block mono">python -m http.server 8000
+# lalu buka http://localhost:8000</pre>
+      <p>API key OpenWeatherMap diatur di <code>js/config.js</code>. Tanpa key, alat tetap bekerja penuh dan visual memakai snapshot.</p>
+      <h3>Python CLI (opsional, untuk resiliensi)</h3>
+      <p>Kalau situs ini hilang, data tetap bisa dipulihkan secara offline:</p>
+      <pre class="code-block mono">pip install -r python/requirements.txt
+python python/ewall_cli.py decrypt locked-7f3a9c12.ewall
+python python/ewall_cli.py encrypt dokumen.pdf
+python python/ewall_cli.py shamir-combine share1.txt share2.txt share3.txt
+python python/ewall_cli.py verify-ledger ledger-export.json
+python python/ewall_cli.py selftest</pre>
+      <p>Self-test browser: buka <a href="about.html?selftest=1">about.html?selftest=1</a>.</p>
+    </section>
+
+    <section aria-labelledby="h-faq" id="faq">
+      <h2 id="h-faq">Pertanyaan umum</h2>
+      <div class="faq-list">
+        <details class="disclosure">
+          <summary>Apakah cuaca bikin password lebih aman?</summary>
+          <div class="disclosure-body"><p>Tidak. Data cuaca itu publik: siapa pun bisa mengambil angka yang sama dari OpenWeatherMap, dan tanpa API pun ruang kemungkinannya cuma sekitar 2<sup>48</sup>. Keamanan datang dari 256 bit <code>crypto.getRandomValues()</code>. Cuaca hanya membuat setiap hasil unik dan diberi stempel. Buktinya ada di <a href="lab.html">Attack Lab</a>.</p></div>
+        </details>
+        <details class="disclosure">
+          <summary>Ke mana data saya pergi?</summary>
+          <div class="disclosure-body"><p>Tidak ke mana-mana. Semua enkripsi, hashing, dan pembuatan kunci terjadi di browsermu. Yang keluar hanya nama kota ke OpenWeatherMap dan 5 karakter pertama hash SHA-1 ke Pwned Passwords saat kamu mengecek kebocoran.</p></div>
+        </details>
+        <details class="disclosure">
+          <summary>Bisa dipakai offline?</summary>
+          <div class="disclosure-body"><p>Ya untuk hampir semua alat setelah halaman termuat. Cuaca memakai snapshot terakhir, dan Breach Radar memang butuh koneksi.</p></div>
+        </details>
+        <details class="disclosure">
+          <summary>Kalau situs ini hilang, file terenkripsi saya bagaimana?</summary>
+          <div class="disclosure-body"><p>Format <code>.ewall</code> dan share Shamir terdokumentasi, dan proyek ini membawa Python CLI (<code>python/ewall_cli.py</code>) yang bisa membuka file dan menggabungkan share secara offline.</p></div>
+        </details>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-credits">
+      <h2 id="h-credits">Kredit dan lisensi</h2>
+      <ul>
+        <li>Data cuaca: <a href="https://openweathermap.org/" rel="noopener">OpenWeatherMap</a> (Current Weather API).</li>
+        <li>Cek kebocoran: <a href="https://haveibeenpwned.com/Passwords" rel="noopener">Have I Been Pwned, Pwned Passwords</a> oleh Troy Hunt (k-anonymity range API).</li>
+        <li>Wordlist passphrase: <a href="https://www.eff.org/dice" rel="noopener">EFF Large Wordlist</a>, CC BY 3.0 US.</li>
+        <li>Daftar password umum untuk estimator: SecLists (MIT).</li>
+        <li>Animasi: <a href="https://gsap.com/" rel="noopener">GSAP</a> 3.12 + ScrollTrigger (lisensi standar GreenSock, gratis). QR: qrcode-generator oleh Kazuhiko Arase (MIT). Estimasi kekuatan: zxcvbn oleh Dropbox (MIT).</li>
+        <li>Font: Bricolage Grotesque dan IBM Plex Mono (SIL Open Font License) via Google Fonts.</li>
+        <li>Inspirasi: Cloudflare LavaRand.</li>
+        <li>Dibuat oleh Nafhan.</li>
+      </ul>
+    </section>
+  </article>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Data cuaca: <a href="https://openweathermap.org/" rel="noopener">OpenWeatherMap</a>. Cek kebocoran: <a href="https://haveibeenpwned.com/Passwords" rel="noopener">Have I Been Pwned, Pwned Passwords</a>. Wordlist: <a href="https://www.eff.org/dice" rel="noopener">EFF</a> (CC BY 3.0 US). Inspirasi: Cloudflare LavaRand.</p>
+    <p>Dibuat oleh Nafhan. Semua alat berjalan di browsermu, tanpa akun, tanpa server. <a href="about.html">Cara kerja dan privasi</a>.</p>
+  </div>
+</footer>
+<script src="js/config.js"></script>
+<script src="js/core/ew.js"></script>
+<script src="js/core/weather.js"></script>
+<script src="js/core/theme.js"></script>
+<script src="js/core/crypto.js"></script>
+<script src="js/core/entropy.js"></script>
+<script src="js/core/strength.js"></script>
+<script src="js/data/wordlist-eff.js"></script>
+<script src="js/data/common-passwords.js"></script>
+<script src="js/core/hibp.js"></script>
+<script src="js/core/shamir.js"></script>
+<script src="js/core/stats.js"></script>
+<script src="js/workers/crack-worker.js"></script>
+<script src="js/core/ledger.js"></script>
+<script src="js/core/ui.js"></script>
+<script src="js/pages/about.js"></script>
+</body>
+</html>

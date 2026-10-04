@@ -1,0 +1,104 @@
+{
+  "format": "entropy-wall-ledger",
+  "version": 1,
+  "exportedAt": "2026-10-04T18:27:38.124Z",
+  "blocks": [
+    {
+      "index": 0,
+      "timestamp": "2026-10-04T18:27:38.071Z",
+      "type": "genesis",
+      "meta": {},
+      "weatherDigest": "1064f79002c5c36f8956294d20d96d4c0107cf7f27b2c44a0660a31f69fd3f86",
+      "stamp": {
+        "place": "Bandung",
+        "desc": "hujan ringan",
+        "temp": 21.4,
+        "sky": "rain"
+      },
+      "prevHash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "difficulty": 3,
+      "nonce": 3160,
+      "hash": "0006633f24735930b26c19cdb6eaf8098023913d69c4a6bf75f595e200fe3bd1"
+    },
+    {
+      "index": 1,
+      "timestamp": "2026-10-04T18:27:38.088Z",
+      "type": "password",
+      "meta": {
+        "length": 20,
+        "bits": 131.1,
+        "charsetSize": 94
+      },
+      "weatherDigest": "1064f79002c5c36f8956294d20d96d4c0107cf7f27b2c44a0660a31f69fd3f86",
+      "stamp": {
+        "place": "Bandung",
+        "desc": "hujan ringan",
+        "temp": 21.4,
+        "sky": "rain"
+      },
+      "prevHash": "0006633f24735930b26c19cdb6eaf8098023913d69c4a6bf75f595e200fe3bd1",
+      "difficulty": 3,
+      "nonce": 4615,
+      "hash": "000246ccb5b9c40f6ac823f89eb1bc51e288ff238dab54b857e4835d74954fd5"
+    },
+    {
+      "index": 2,
+      "timestamp": "2026-10-04T18:27:38.102Z",
+      "type": "passphrase",
+      "meta": {
+        "words": 6,
+        "bits": 77.6
+      },
+      "weatherDigest": "1064f79002c5c36f8956294d20d96d4c0107cf7f27b2c44a0660a31f69fd3f86",
+      "stamp": {
+        "place": "Bandung",
+        "desc": "hujan ringan",
+        "temp": 21.4,
+        "sky": "rain"
+      },
+      "prevHash": "000246ccb5b9c40f6ac823f89eb1bc51e288ff238dab54b857e4835d74954fd5",
+      "difficulty": 3,
+      "nonce": 1816,
+      "hash": "000262b28fe1ec05f6a8899462242f8a61066a4ad1ec4a11ca1683c93f4c370a"
+    },
+    {
+      "index": 3,
+      "timestamp": "2026-10-04T18:27:38.109Z",
+      "type": "seal",
+      "meta": {
+        "mode": "p"
+      },
+      "weatherDigest": "1064f79002c5c36f8956294d20d96d4c0107cf7f27b2c44a0660a31f69fd3f86",
+      "stamp": {
+        "place": "Bandung",
+        "desc": "hujan ringan",
+        "temp": 21.4,
+        "sky": "rain"
+      },
+      "prevHash": "000262b28fe1ec05f6a8899462242f8a61066a4ad1ec4a11ca1683c93f4c370a",
+      "difficulty": 3,
+      "nonce": 1955,
+      "hash": "00098ce0bbcf179f45f1bb023d5835a179461d5493aba2deed1355bf2e796639"
+    },
+    {
+      "index": 4,
+      "timestamp": "2026-10-04T18:27:38.115Z",
+      "type": "split",
+      "meta": {
+        "k": 3,
+        "n": 5
+      },
+      "weatherDigest": "1064f79002c5c36f8956294d20d96d4c0107cf7f27b2c44a0660a31f69fd3f86",
+      "stamp": {
+        "place": "Bandung",
+        "desc": "hujan ringan",
+        "temp": 21.4,
+        "sky": "rain"
+      },
+      "prevHash": "00098ce0bbcf179f45f1bb023d5835a179461d5493aba2deed1355bf2e796639",
+      "difficulty": 3,
+      "nonce": 2986,
+      "hash": "000518cdc505f47074828310688906b629c8a0c6508d99774ea1b2c797dd7c10"
+    }
+  ]
+}

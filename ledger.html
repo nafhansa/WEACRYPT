@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="id" data-sky="clouds" data-time="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://api.openweathermap.org https://api.pwnedpasswords.com; worker-src blob:; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Entropy Ledger · WEACRYPT</title>
+<meta name="description" content="Hash chain lokal dengan proof-of-work yang ketahuan kalau diubah.">
+<meta name="theme-color" content="#3D5A2A">
+<meta property="og:title" content="Entropy Ledger · WEACRYPT">
+<meta property="og:description" content="Hash chain lokal dengan proof-of-work yang ketahuan kalau diubah.">
+<meta property="og:image" content="assets/img/og-image.png">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/tools.css">
+</head>
+<body class="page-ledger">
+<a class="skip" href="#main">Lewati ke konten</a>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="index.html"><span data-icon="logo"></span><span>WEACRYPT</span></a>
+    <nav class="topbar-nav" aria-label="Navigasi utama">
+      <a href="dashboard.html" class="hide-sm">Control Room</a>
+      <details class="navmenu">
+        <summary aria-current="true">Alat</summary>
+        <div class="navmenu-list">
+          <a href="dashboard.html" class="show-sm"><span data-icon="dashboard"></span><span>Control Room<span class="hint">Langit, entropi, ledger</span></span></a>
+          <a href="generate.html"><span data-icon="forge"></span><span>Key Forge<span class="hint">Password, passphrase, PIN, kunci</span></span></a>
+          <a href="breach.html"><span data-icon="radar"></span><span>Breach Radar<span class="hint">Cek kebocoran password</span></span></a>
+          <a href="seal.html"><span data-icon="seal"></span><span>Sealed Message<span class="hint">Segel pesan jadi link</span></span></a>
+          <a href="open.html"><span data-icon="unlock"></span><span>Buka pesan<span class="hint">Buka link atau blok tersegel</span></span></a>
+          <a href="locker.html"><span data-icon="locker"></span><span>File Locker<span class="hint">Kunci file dengan AES-256</span></span></a>
+          <a href="split.html"><span data-icon="split"></span><span>Secret Splitter<span class="hint">Pecah seed phrase</span></span></a>
+          <a href="ledger.html" aria-current="page"><span data-icon="ledger"></span><span>Entropy Ledger<span class="hint">Rantai aktivitas tamper-evident</span></span></a>
+          <a href="lab.html"><span data-icon="lab"></span><span>Attack Lab<span class="hint">Serangan nyata dan uji acak</span></span></a>
+          <a href="verify.html"><span data-icon="verify"></span><span>Integrity Checker<span class="hint">Hash dan cocokkan file</span></span></a>
+          <a href="about.html" class="show-sm"><span data-icon="about"></span><span>Tentang<span class="hint">Cara kerja, privasi, FAQ</span></span></a>
+        </div>
+      </details>
+      <a href="about.html" class="hide-sm">Tentang</a>
+    </nav>
+    <div data-weather-chip></div>
+  </div>
+</header>
+<main id="main" class="wrap tool-page">
+  <section class="tool-hero">
+    <div>
+      <p class="eyebrow">Entropy Ledger</p>
+      <h1>Catatan berantai yang ketahuan kalau diubah.</h1>
+      <p class="lede">Setiap aktivitas jadi blok yang memuat hash blok sebelumnya dan proof-of-work kecil. Ini hash chain lokal di browsermu, bukan blockchain terdistribusi, tapi cara mendeteksi manipulasinya sama.</p>
+    </div>
+  </section>
+
+  <section class="howto" aria-label="Cara pakai halaman ini">
+    <details class="howto-box" data-howto="ledger" open>
+      <summary><span class="howto-icon" data-icon="about"></span><span class="howto-title">Cara pakai</span><span class="howto-count">4 langkah</span></summary>
+      <ol class="howto-steps">
+        <li><span class="howto-num" aria-hidden="true">1</span><div><strong>Pakai alat lain dulu</strong><p>Setiap aktivitas (membuat password, menyegel pesan, dan lainnya) menambang satu blok di sini, tanpa rahasia.</p></div></li>
+        <li><span class="howto-num" aria-hidden="true">2</span><div><strong>Klik blok</strong><p>Lihat semua isi blok dan hash lengkapnya di panel Detail.</p></div></li>
+        <li><span class="howto-num" aria-hidden="true">3</span><div><strong>Verifikasi rantai</strong><p>Tekan Verifikasi rantai untuk memastikan tidak ada blok yang diubah.</p></div></li>
+        <li><span class="howto-num" aria-hidden="true">4</span><div><strong>Coba jadi penyerang</strong><p>Aktifkan Mode penyerang, ubah satu angka, verifikasi, lihat rantainya patah, lalu coba Tambang ulang semua.</p></div></li>
+      </ol>
+    </details>
+  </section>
+
+  <section class="panel ledger-panel" aria-labelledby="chain-title">
+    <div class="row row-between">
+      <h2 id="chain-title" class="panel-title">Rantai</h2>
+      <p class="chain-status" id="chain-status" aria-live="polite"></p>
+    </div>
+    <div class="chain-scroll" id="chain-scroll" tabindex="0" role="region" aria-label="Rantai blok, bisa digeser horizontal">
+      <ol class="chain" id="chain"></ol>
+    </div>
+    <div class="banner banner-info" id="full-banner" hidden>
+      <span data-icon="alert"></span>
+      <p>Ledger penuh (500 blok). Ekspor dulu, lalu arsipkan untuk memulai rantai baru. <button type="button" class="btn btn-secondary btn-sm" id="btn-archive">Ekspor dan arsipkan</button></p>
+    </div>
+    <p class="empty-state" id="chain-empty" hidden>Belum ada blok. Buat password pertama untuk menambang blok genesis. <a href="generate.html">Buka Key Forge</a></p>
+
+    <div class="row action-row ledger-actions">
+      <button type="button" class="btn btn-primary" id="btn-verify" data-needs-crypto><span data-icon="verify"></span>Verifikasi rantai</button>
+      <button type="button" class="btn btn-secondary" id="btn-attack" aria-pressed="false"><span data-icon="lab"></span><span>Mode penyerang</span></button>
+      <button type="button" class="btn btn-secondary" id="btn-export"><span data-icon="download"></span>Ekspor JSON</button>
+      <button type="button" class="btn btn-secondary" id="btn-import"><span data-icon="upload"></span>Impor JSON</button>
+      <input type="file" id="import-file" accept="application/json,.json" class="sr-only" tabindex="-1" aria-hidden="true">
+      <button type="button" class="btn btn-ghost" id="btn-clear"><span data-icon="x"></span>Hapus ledger</button>
+    </div>
+    <div class="field difficulty-field">
+      <label for="difficulty">Difficulty proof-of-work <span class="hint">Jumlah nol hex di awal hash. Tiap +1 berarti 16x lebih banyak percobaan.</span></label>
+      <div class="range-row">
+        <input type="range" id="difficulty" min="2" max="5" value="4">
+        <output for="difficulty" id="difficulty-out" class="mono">4</output>
+      </div>
+      <p class="hint" id="difficulty-note"></p>
+    </div>
+  </section>
+
+  <section class="panel mining" id="mining" aria-labelledby="mining-title" hidden>
+    <h2 id="mining-title" class="panel-title">Menambang…</h2>
+    <p class="mono mining-nonce" id="mining-nonce">nonce 0</p>
+    <p class="mono mining-hash" id="mining-hash"></p>
+    <p class="hint" id="mining-info" aria-live="polite"></p>
+  </section>
+
+  <section class="panel attack-panel" id="attack-panel" aria-labelledby="attack-title" hidden>
+    <h2 id="attack-title" class="panel-title">Mode penyerang</h2>
+    <p>Kamu sedang mengedit salinan rantai di memori. Ubah field blok mana pun, misalnya <code>bits</code> dari 40 jadi 128, lalu tekan <strong>Verifikasi rantai</strong>. Rantai asli di penyimpanan tidak berubah sampai kamu keluar dari mode ini.</p>
+    <div class="row action-row">
+      <button type="button" class="btn btn-danger" id="btn-remine" data-needs-crypto>Tambang ulang semua</button>
+      <button type="button" class="btn btn-ghost" id="btn-attack-exit">Keluar dan pulihkan</button>
+    </div>
+    <p class="hint" id="remine-estimate" aria-live="polite"></p>
+  </section>
+
+  <div class="ledger-bottom">
+    <section class="panel detail-panel" aria-labelledby="detail-title">
+      <h2 id="detail-title" class="panel-title">Detail blok</h2>
+      <div id="detail" aria-live="polite"><p class="muted">Pilih blok untuk melihat semua field dan hash lengkap.</p></div>
+    </section>
+    <section class="panel stats-panel" aria-labelledby="stats-title">
+      <h2 id="stats-title" class="panel-title">Statistik</h2>
+      <dl class="stats" id="stats"></dl>
+    </section>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Data cuaca: <a href="https://openweathermap.org/" rel="noopener">OpenWeatherMap</a>. Cek kebocoran: <a href="https://haveibeenpwned.com/Passwords" rel="noopener">Have I Been Pwned, Pwned Passwords</a>. Wordlist: <a href="https://www.eff.org/dice" rel="noopener">EFF</a> (CC BY 3.0 US). Inspirasi: Cloudflare LavaRand.</p>
+    <p>Dibuat oleh Nafhan. Semua alat berjalan di browsermu, tanpa akun, tanpa server. <a href="about.html">Cara kerja dan privasi</a>.</p>
+  </div>
+</footer>
+<script src="js/config.js"></script>
+<script src="js/core/ew.js"></script>
+<script src="js/core/weather.js"></script>
+<script src="js/core/theme.js"></script>
+<script src="js/core/crypto.js"></script>
+<script src="js/core/entropy.js"></script>
+<script src="js/core/strength.js"></script>
+<script src="js/workers/crack-worker.js"></script>
+<script src="js/core/ledger.js"></script>
+<script src="js/core/ui.js"></script>
+<script src="js/pages/ledger.js"></script>
+</body>
+</html>

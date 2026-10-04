@@ -1,0 +1,87 @@
+/* WEACRYPT: design tokens. Putih bersih dengan aksen hijau lumut gelap.
+   Satu tema terang; data-sky di <html> tetap diisi theme.js tapi hanya untuk ikon/stempel. */
+:root {
+  /* Palet inti */
+  --white: #FFFFFF;
+  --paper: #F7F8F4;
+  --ink: #1F2A1B;
+  --moss: #3D5A2A;
+  --moss-dark: #2B4220;
+  --moss-mid: #6E8B4F;
+  --moss-light: #A9BF8F;
+  --moss-soft: #E8EEDF;
+  --moss-tint: #F3F6EE;
+
+  /* Semantik */
+  --bg: var(--white);
+  --bg-deep: var(--paper);
+  --surface: var(--white);
+  --surface-2: var(--moss-tint);
+  --text: var(--ink);
+  --muted: #586352;
+  --line: rgba(31, 42, 27, 0.1);
+  --line-strong: rgba(31, 42, 27, 0.22);
+  --accent: var(--moss);
+  --accent-bg: var(--moss);
+  --on-accent: #FFFFFF;
+  --ok-ink: var(--moss);
+  --ok-bg: var(--moss-soft);
+  --danger-ink: #A8261C;
+  --danger-bg: #FCEBE9;
+  --warn-ink: #7A5600;
+  --warn-bg: #FBF3DC;
+  --focus: var(--moss);
+  --shadow: 0 1px 2px rgba(31, 42, 27, 0.05), 0 8px 24px rgba(31, 42, 27, 0.06);
+  --scrim: rgba(255, 255, 255, 0.86);
+
+  /* Alias nama lama (dipakai komponen yang sudah ada) */
+  --fog: var(--paper);
+  --basalt: var(--ink);
+  --crater-night: var(--moss-dark);
+  --kawah: var(--moss-light);
+  --kawah-ink: var(--moss);
+  --belerang: #C9A93A;
+  --belerang-ink: var(--warn-ink);
+  --magma: #C0392B;
+  --magma-ink: var(--danger-ink);
+  --rain: var(--moss-mid);
+  --lava-a: var(--moss);
+  --lava-b: var(--moss-light);
+  --lamp-liquid: var(--moss-soft);
+  --sky-1: transparent;
+  --sky-2: transparent;
+
+  /* Tipografi */
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-body: "Bricolage Grotesque", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  /* Skala 1.333: 14, 16, 21, 28, 38, 50, 67, 89 */
+  --t-14: 0.875rem;
+  --t-16: 1rem;
+  --t-21: 1.3125rem;
+  --t-28: 1.75rem;
+  --t-38: 2.375rem;
+  --t-50: 3.125rem;
+  --t-67: 4.1875rem;
+  --t-89: 5.5625rem;
+
+  /* Ruang */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+
+  /* Radius berjenjang */
+  --r-panel: 20px;
+  --r-input: 10px;
+  --r-chip: 999px;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --measure: 70ch;
+  color-scheme: light;
+}

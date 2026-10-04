@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="id" data-sky="clouds" data-time="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://api.openweathermap.org https://api.pwnedpasswords.com; worker-src blob:; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>WEACRYPT</title>
+<meta name="description" content="WEACRYPT (Weather Encryption): alat keamanan pribadi di browser yang hidup bersama langit Bandung. Buat password, segel pesan, kunci file, pecah seed phrase. Tanpa akun, tanpa server.">
+<meta name="theme-color" content="#3D5A2A">
+<meta property="og:title" content="WEACRYPT">
+<meta property="og:description" content="WEACRYPT (Weather Encryption): alat keamanan pribadi di browser yang hidup bersama langit Bandung. Buat password, segel pesan, kunci file, pecah seed phrase. Tanpa akun, tanpa server.">
+<meta property="og:image" content="assets/img/og-image.png">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/landing.css">
+</head>
+<body class="page-landing">
+
+<a class="skip" href="#main">Lewati ke konten</a>
+<header class="lp-top">
+  <div class="wrap lp-top-inner">
+    <a class="brand" href="index.html"><span data-icon="logo"></span><span>WEACRYPT</span></a>
+    <nav class="lp-nav" aria-label="Navigasi utama">
+      <a href="#story">Cara kerja</a>
+      <a href="#features">Fitur</a>
+      <a href="about.html">Tentang</a>
+      <a href="dashboard.html" class="btn btn-primary btn-sm lp-cta">Control Room</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <!-- 1. Nama produk -->
+  <section class="intro" id="intro" aria-labelledby="word">
+    <div class="intro-inner">
+      <p class="intro-kicker" id="intro-kicker">Weather + Encryption</p>
+      <h1 class="word" id="word" aria-label="WEACRYPT, dari Weather Encryption">
+        <span class="w-part" aria-hidden="true">WEA</span><span class="w-x" aria-hidden="true">ther</span><span class="w-gap" aria-hidden="true"></span><span class="w-x" aria-hidden="true">en</span><span class="w-part w-crypt" aria-hidden="true">CRYPT</span><span class="w-x" aria-hidden="true">ion</span>
+      </h1>
+      <p class="intro-line" id="intro-line">Langit Bandung yang bikin unik. Matematika yang bikin aman.</p>
+      <p class="intro-live"><span data-icon="cloud"></span><span id="intro-live">Memuat langit Bandung…</span></p>
+      <p class="scroll-cue" id="scroll-cue" aria-hidden="true"><span>Gulir</span><span class="scroll-line"></span></p>
+    </div>
+  </section>
+
+  <!-- 2. Apa ini -->
+  <section class="story" id="story" aria-labelledby="story-title">
+    <div class="story-pin wrap">
+      <div class="story-head">
+        <p class="eyebrow">Apa itu WEACRYPT</p>
+        <h2 id="story-title">Alat keamanan pribadi yang hidup bersama langit.</h2>
+      </div>
+      <div class="story-grid">
+        <ol class="story-steps">
+          <li class="story-step" data-step="0">
+            <span class="step-num">1</span>
+            <h3>Langit jadi sinyal</h3>
+            <p>WEACRYPT membaca cuaca Bandung secara live dari OpenWeatherMap. Data ini publik, jadi dipakai sebagai warna, identitas, dan stempel di setiap hasil.</p>
+          </li>
+          <li class="story-step" data-step="1">
+            <span class="step-num">2</span>
+            <h3>Matematika jadi pengaman</h3>
+            <p>Keamanan selalu datang dari 256 bit acak sistem operasi dan algoritma standar: AES-256, PBKDF2, SHA-256, Shamir. Cuaca hanya ikut dicampur, tidak pernah jadi rahasia.</p>
+          </li>
+          <li class="story-step" data-step="2">
+            <span class="step-num">3</span>
+            <h3>Semua terjadi di browsermu</h3>
+            <p>Tanpa akun, tanpa server, tanpa database. Password, pesan, dan file tidak pernah meninggalkan perangkatmu.</p>
+          </li>
+        </ol>
+        <div class="story-visuals">
+          <div class="story-card sc-weather" data-visual="0">
+            <p class="sc-label">OpenWeatherMap · live</p>
+            <p class="sc-temp" id="sc-temp">--°C</p>
+            <p class="sc-desc" id="sc-desc">Memuat…</p>
+            <dl class="sc-facts">
+              <div><dt>Kelembapan</dt><dd id="sc-hum">-</dd></div>
+              <div><dt>Angin</dt><dd id="sc-wind">-</dd></div>
+              <div><dt>Awan</dt><dd id="sc-clouds">-</dd></div>
+            </dl>
+            <pre class="sc-json mono" id="sc-json" aria-label="Potongan respons JSON OpenWeatherMap"></pre>
+          </div>
+          <div class="story-card sc-random" data-visual="1">
+            <p class="sc-label">crypto.getRandomValues · 256 bit</p>
+            <div class="hexgrid mono" id="hexgrid" aria-hidden="true"></div>
+            <p class="sc-note">Cuaca: publik, 0 bit rahasia. CSPRNG: 256 bit rahasia. Hanya yang kedua yang membuatmu aman.</p>
+          </div>
+          <div class="story-card sc-output" data-visual="2">
+            <p class="sc-label">Hasil, dibuat di browser ini</p>
+            <p class="sc-pass mono" id="sc-pass">••••••••••••••••</p>
+            <p class="sc-stamp" id="sc-stamp"></p>
+            <button type="button" class="btn btn-secondary btn-sm" id="btn-sample" data-needs-crypto>Buat contoh password</button>
+          </div>
+        </div>
+      </div>
+      <div class="story-progress" aria-hidden="true"><span class="story-bar-fill"></span></div>
+    </div>
+  </section>
+
+  <!-- 3. Fitur dan manfaat -->
+  <section class="features" id="features" aria-labelledby="feat-title">
+    <div class="features-pin">
+      <div class="wrap features-head">
+        <p class="eyebrow">Fitur</p>
+        <h2 id="feat-title">Delapan alat. Satu browser.</h2>
+        <p class="muted">Setiap halaman punya panduan "Cara pakai" langkah demi langkah.</p>
+      </div>
+      <div class="features-track" id="features-track">
+        <a class="feat" href="generate.html">
+          <span class="feat-icon" data-icon="forge"></span>
+          <h3>Key Forge</h3>
+          <p class="feat-what">Buat password, passphrase, PIN, dan kunci kriptografi.</p>
+          <p class="feat-why"><strong>Manfaat:</strong> tidak perlu lagi memakai ulang password lemah. Kamu tahu persis seberapa kuat hasilnya.</p>
+          <span class="feat-go">Buka Key Forge</span>
+        </a>
+        <a class="feat" href="breach.html">
+          <span class="feat-icon" data-icon="radar"></span>
+          <h3>Breach Radar</h3>
+          <p class="feat-what">Cek apakah password pernah bocor di kebocoran data.</p>
+          <p class="feat-why"><strong>Manfaat:</strong> tahu password mana yang harus diganti, tanpa pernah mengirim password-nya.</p>
+          <span class="feat-go">Buka Breach Radar</span>
+        </a>
+        <a class="feat" href="seal.html">
+          <span class="feat-icon" data-icon="seal"></span>
+          <h3>Sealed Message</h3>
+          <p class="feat-what">Ubah pesan rahasia jadi link terenkripsi.</p>
+          <p class="feat-why"><strong>Manfaat:</strong> kirim password WiFi atau kredensial tim lewat chat tanpa plaintext.</p>
+          <span class="feat-go">Buka Sealed Message</span>
+        </a>
+        <a class="feat" href="locker.html">
+          <span class="feat-icon" data-icon="locker"></span>
+          <h3>File Locker</h3>
+          <p class="feat-what">Kunci file apa pun dengan AES-256 langsung di browser.</p>
+          <p class="feat-why"><strong>Manfaat:</strong> scan KTP, transkrip, atau kontrak aman walau file-nya tercecer.</p>
+          <span class="feat-go">Buka File Locker</span>
+        </a>
+        <a class="feat" href="split.html">
+          <span class="feat-icon" data-icon="split"></span>
+          <h3>Secret Splitter</h3>
+          <p class="feat-what">Pecah seed phrase jadi beberapa bagian.</p>
+          <p class="feat-why"><strong>Manfaat:</strong> satu kertas hilang atau dicuri tidak lagi berarti dompetmu hilang.</p>
+          <span class="feat-go">Buka Secret Splitter</span>
+        </a>
+        <a class="feat" href="verify.html">
+          <span class="feat-icon" data-icon="verify"></span>
+          <h3>Integrity Checker</h3>
+          <p class="feat-what">Hitung dan cocokkan hash file unduhan.</p>
+          <p class="feat-why"><strong>Manfaat:</strong> pastikan installer atau ISO yang kamu unduh tidak dimodifikasi.</p>
+          <span class="feat-go">Buka Integrity Checker</span>
+        </a>
+        <a class="feat" href="ledger.html">
+          <span class="feat-icon" data-icon="ledger"></span>
+          <h3>Entropy Ledger</h3>
+          <p class="feat-what">Catatan aktivitas berantai dengan proof-of-work.</p>
+          <p class="feat-why"><strong>Manfaat:</strong> lihat sendiri bagaimana blockchain mendeteksi data yang diubah.</p>
+          <span class="feat-go">Buka Entropy Ledger</span>
+        </a>
+        <a class="feat" href="lab.html">
+          <span class="feat-icon" data-icon="lab"></span>
+          <h3>Attack Lab</h3>
+          <p class="feat-what">Serangan nyata terhadap kunci yang lemah.</p>
+          <p class="feat-why"><strong>Manfaat:</strong> paham kenapa "acak" itu penting, dan kenapa cuaca saja tidak cukup.</p>
+          <span class="feat-go">Buka Attack Lab</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Privasi -->
+  <section class="privacy wrap" id="privasi" aria-labelledby="priv-title">
+    <p class="eyebrow">Privasi</p>
+    <h2 id="priv-title" class="reveal">Yang keluar dari browsermu cuma dua.</h2>
+    <div class="priv-list">
+      <div class="priv-item reveal"><span class="priv-host mono">api.openweathermap.org</span><span>Nama kota: "Bandung"</span></div>
+      <div class="priv-item reveal"><span class="priv-host mono">api.pwnedpasswords.com</span><span>5 karakter awal hash, saat kamu mengecek kebocoran</span></div>
+      <div class="priv-item priv-none reveal"><span class="priv-host">Server WEACRYPT</span><span>Tidak ada. Buka DevTools, tab Network, dan buktikan sendiri.</span></div>
+    </div>
+  </section>
+
+  <!-- 5. Ajakan -->
+  <section class="final wrap" aria-labelledby="final-title">
+    <h2 id="final-title" class="reveal">Mulai dari langit Bandung hari ini.</h2>
+    <div class="row final-ctas reveal">
+      <a class="btn btn-primary btn-lg" href="generate.html">Buat password sekarang</a>
+      <a class="btn btn-secondary btn-lg" href="dashboard.html">Masuk Control Room</a>
+    </div>
+    <p class="muted small">WEACRYPT bukan pengganti password manager. Simpan hasilnya di password manager. Pertanyaan umum ada di <a href="about.html#faq">halaman Tentang</a>.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Data cuaca: <a href="https://openweathermap.org/" rel="noopener">OpenWeatherMap</a>. Cek kebocoran: <a href="https://haveibeenpwned.com/Passwords" rel="noopener">Have I Been Pwned, Pwned Passwords</a>. Wordlist: <a href="https://www.eff.org/dice" rel="noopener">EFF</a> (CC BY 3.0 US). Animasi: GSAP.</p>
+    <p>WEACRYPT, dari Weather Encryption. Dibuat oleh Nafhan. <a href="about.html">Cara kerja, privasi, dan kredit</a>.</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="js/config.js"></script>
+<script src="js/core/ew.js"></script>
+<script src="js/core/weather.js"></script>
+<script src="js/core/theme.js"></script>
+<script src="js/core/crypto.js"></script>
+<script src="js/core/entropy.js"></script>
+<script src="js/core/strength.js"></script>
+<script src="js/workers/crack-worker.js"></script>
+<script src="js/core/ledger.js"></script>
+<script src="js/core/ui.js"></script>
+<script src="js/pages/landing.js"></script>
+</body>
+</html>

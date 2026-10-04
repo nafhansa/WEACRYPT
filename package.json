@@ -1,0 +1,9 @@
+{
+  "name": "weacrypt",
+  "private": true,
+  "description": "WEACRYPT (Weather Encryption): alat keamanan pribadi di browser. Situs statis + satu Vercel Function proxy cuaca.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  }
+}

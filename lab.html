@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="id" data-sky="clouds" data-time="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://api.openweathermap.org https://api.pwnedpasswords.com; worker-src blob:; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Attack Lab · WEACRYPT</title>
+<meta name="description" content="Lihat sendiri bagaimana kunci dari cuaca dibobol, dan kenapa acak secara statistik tidak sama dengan tidak bisa ditebak.">
+<meta name="theme-color" content="#3D5A2A">
+<meta property="og:title" content="Attack Lab · WEACRYPT">
+<meta property="og:description" content="Lihat sendiri bagaimana kunci dari cuaca dibobol, dan kenapa acak secara statistik tidak sama dengan tidak bisa ditebak.">
+<meta property="og:image" content="assets/img/og-image.png">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/tools.css">
+</head>
+<body class="page-lab">
+<a class="skip" href="#main">Lewati ke konten</a>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="index.html"><span data-icon="logo"></span><span>WEACRYPT</span></a>
+    <nav class="topbar-nav" aria-label="Navigasi utama">
+      <a href="dashboard.html" class="hide-sm">Control Room</a>
+      <details class="navmenu">
+        <summary aria-current="true">Alat</summary>
+        <div class="navmenu-list">
+          <a href="dashboard.html" class="show-sm"><span data-icon="dashboard"></span><span>Control Room<span class="hint">Langit, entropi, ledger</span></span></a>
+          <a href="generate.html"><span data-icon="forge"></span><span>Key Forge<span class="hint">Password, passphrase, PIN, kunci</span></span></a>
+          <a href="breach.html"><span data-icon="radar"></span><span>Breach Radar<span class="hint">Cek kebocoran password</span></span></a>
+          <a href="seal.html"><span data-icon="seal"></span><span>Sealed Message<span class="hint">Segel pesan jadi link</span></span></a>
+          <a href="open.html"><span data-icon="unlock"></span><span>Buka pesan<span class="hint">Buka link atau blok tersegel</span></span></a>
+          <a href="locker.html"><span data-icon="locker"></span><span>File Locker<span class="hint">Kunci file dengan AES-256</span></span></a>
+          <a href="split.html"><span data-icon="split"></span><span>Secret Splitter<span class="hint">Pecah seed phrase</span></span></a>
+          <a href="ledger.html"><span data-icon="ledger"></span><span>Entropy Ledger<span class="hint">Rantai aktivitas tamper-evident</span></span></a>
+          <a href="lab.html" aria-current="page"><span data-icon="lab"></span><span>Attack Lab<span class="hint">Serangan nyata dan uji acak</span></span></a>
+          <a href="verify.html"><span data-icon="verify"></span><span>Integrity Checker<span class="hint">Hash dan cocokkan file</span></span></a>
+          <a href="about.html" class="show-sm"><span data-icon="about"></span><span>Tentang<span class="hint">Cara kerja, privasi, FAQ</span></span></a>
+        </div>
+      </details>
+      <a href="about.html" class="hide-sm">Tentang</a>
+    </nav>
+    <div data-weather-chip></div>
+  </div>
+</header>
+<main id="main" class="wrap tool-page">
+  <section class="tool-hero">
+    <div>
+      <p class="eyebrow">Attack Lab</p>
+      <h1>Kami meretas ide kami sendiri.</h1>
+      <p class="lede">Ide awal WEACRYPT adalah "kunci dari cuaca". Di sini ide itu dibobol di depanmu, dengan serangan yang benar-benar berjalan di browser. Supaya kamu tidak perlu jadi korban.</p>
+    </div>
+  </section>
+
+  <section class="howto" aria-label="Cara pakai halaman ini">
+    <details class="howto-box" data-howto="lab" open>
+      <summary><span class="howto-icon" data-icon="about"></span><span class="howto-title">Cara pakai</span><span class="howto-count">4 langkah</span></summary>
+      <ol class="howto-steps">
+        <li><span class="howto-num" aria-hidden="true">1</span><div><strong>Serangan 1</strong><p>Tekan "Buat kunci versi naif" lalu "Retas". Kunci dari cuaca dibobol dengan satu permintaan API.</p></div></li>
+        <li><span class="howto-num" aria-hidden="true">2</span><div><strong>Serangan 2</strong><p>Pilih berapa field yang tidak diketahui penyerang, lalu tekan Mulai brute force.</p></div></li>
+        <li><span class="howto-num" aria-hidden="true">3</span><div><strong>Uji randomness</strong><p>Pilih sumber byte dan tekan Jalankan uji. Bandingkan hasil uji dan bitmap-nya.</p></div></li>
+        <li><span class="howto-num" aria-hidden="true">4</span><div><strong>Pelajarannya</strong><p>Acak secara statistik tidak sama dengan tidak bisa ditebak. Keamanan datang dari CSPRNG, bukan dari cuaca.</p></div></li>
+      </ol>
+    </details>
+  </section>
+
+  <!-- F8.1 -->
+  <section class="panel lab-section" id="attack1" aria-labelledby="a1-title">
+    <p class="eyebrow">Serangan 1</p>
+    <h2 id="a1-title">Kunci dari cuaca saja</h2>
+    <div class="duel">
+      <div class="duel-side victim">
+        <h3><span data-icon="lock"></span> Korban</h3>
+        <p>Kunci naif: <code>SHA-256(canonicalJSON(cuaca saat ini))</code>. Pesan contoh dienkripsi AES-GCM dengan kunci itu.</p>
+        <button type="button" class="btn btn-primary" id="btn-naive" data-needs-crypto>Buat kunci versi naif</button>
+        <dl class="kv" id="victim-out" hidden>
+          <dt>Field cuaca</dt><dd class="mono" id="v-fields"></dd>
+          <dt>Kunci (rahasia korban)</dt><dd class="mono masked-key" id="v-key"></dd>
+          <dt>IV</dt><dd class="mono" id="v-iv"></dd>
+          <dt>Ciphertext</dt><dd class="mono" id="v-ct"></dd>
+        </dl>
+      </div>
+      <div class="duel-side attacker">
+        <h3><span data-icon="lab"></span> Penyerang</h3>
+        <p>Penyerang tahu kota dan kira-kira jamnya. Ia memanggil endpoint OpenWeatherMap yang sama dan mendapat angka yang sama.</p>
+        <button type="button" class="btn btn-danger" id="btn-hack" data-needs-crypto disabled>Retas</button>
+        <ol class="timeline" id="timeline" aria-live="polite"></ol>
+        <div class="shatter" id="shatter" hidden>
+          <div class="shards" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <p class="shatter-text" id="shatter-text"></p>
+        </div>
+      </div>
+    </div>
+    <p class="lesson">Data publik bukan rahasia. Penyerang cukup tahu kota dan jam.</p>
+  </section>
+
+  <!-- F8.2 -->
+  <section class="panel lab-section" id="attack2" aria-labelledby="a2-title">
+    <p class="eyebrow">Serangan 2</p>
+    <h2 id="a2-title">Brute force tanpa API</h2>
+    <p>Bahkan tanpa akses API, ruang kemungkinan cuaca kecil. Ini estimasi ruang kunci bila semua field ditebak dalam rentang wajar Bandung:</p>
+    <div class="table-wrap">
+      <table class="space-table">
+        <caption class="sr-only">Estimasi ruang kunci dari field cuaca</caption>
+        <thead><tr><th scope="col">Field</th><th scope="col">Rentang wajar Bandung</th><th scope="col">Resolusi</th><th scope="col" class="num">Jumlah nilai</th><th scope="col" class="num">Bit</th></tr></thead>
+        <tbody id="space-body"></tbody>
+        <tfoot><tr><th scope="row" colspan="3">Total</th><td class="num" id="space-total"></td><td class="num" id="space-bits"></td></tr></tfoot>
+      </table>
+    </div>
+    <div class="compare-cards">
+      <div class="cmp-card cmp-bad">
+        <p class="cmp-label">Kunci dari cuaca, GPU 10<sup>10</sup> tebakan/detik</p>
+        <p class="cmp-value" id="gpu-time"></p>
+        <p class="hint">Field berkorelasi (hujan berarti kelembapan tinggi), jadi ruang nyatanya jauh lebih kecil.</p>
+      </div>
+      <div class="cmp-card cmp-good">
+        <p class="cmp-label">256 bit CSPRNG, GPU yang sama</p>
+        <p class="cmp-value" id="csprng-time"></p>
+        <p class="hint" id="csprng-years"></p>
+      </div>
+    </div>
+
+    <h3 class="demo-title">Demo live</h3>
+    <p>Skenario: penyerang tahu semua field kecuali beberapa. Worker menghitung SHA-256 untuk setiap kandidat lalu mencoba mendekripsi ciphertext korban dari Serangan 1.</p>
+    <div class="field">
+      <label for="unknown">Field yang tidak diketahui penyerang: <output id="unknown-out" for="unknown">2</output></label>
+      <input type="range" id="unknown" min="2" max="4" value="2" step="1">
+      <p class="hint" id="unknown-desc"></p>
+    </div>
+    <div class="row">
+      <button type="button" class="btn btn-danger" id="btn-brute" data-needs-crypto>Mulai brute force</button>
+      <button type="button" class="btn btn-ghost" id="btn-brute-stop" hidden>Hentikan</button>
+    </div>
+    <div class="brute-out" id="brute-out" hidden>
+      <div class="progress" role="progressbar" aria-labelledby="brute-status" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="brute-bar"><span></span></div>
+      <p id="brute-status" aria-live="polite"></p>
+      <dl class="kv" id="brute-stats"></dl>
+    </div>
+  </section>
+
+  <!-- F8.3 -->
+  <section class="panel lab-section" id="randomness" aria-labelledby="r-title">
+    <p class="eyebrow">Uji randomness</p>
+    <h2 id="r-title">Acak secara statistik tidak sama dengan tidak bisa ditebak.</h2>
+    <p>Pilih sumber byte (1 MB), lalu jalankan uji monobit, chi-square, dan runs. Ambang lolos: p ≥ 0,01. Generator sempurna pun sesekali gagal di ambang ini, itu sifat uji statistik.</p>
+    <fieldset class="radio-cards source-cards">
+      <legend class="label">Sumber sampel</legend>
+      <label class="radio-card"><input type="radio" name="src" value="mixer" checked><strong>Mixer WEACRYPT</strong><span>CSPRNG OS + cuaca + jitter, lewat HKDF</span></label>
+      <label class="radio-card"><input type="radio" name="src" value="math"><strong>Math.random()</strong><span>Lolos statistik, tidak aman secara kriptografis</span></label>
+      <label class="radio-card"><input type="radio" name="src" value="weather"><strong>Cuaca saja</strong><span>SHA-256 berantai dari data cuaca, tanpa seed rahasia</span></label>
+      <label class="radio-card"><input type="radio" name="src" value="lcg"><strong>LCG 8 bit</strong><span>Generator buruk yang sengaja dibuat</span></label>
+    </fieldset>
+    <div class="row">
+      <button type="button" class="btn btn-primary" id="btn-tests" data-needs-crypto>Jalankan uji</button>
+      <button type="button" class="btn btn-secondary" id="btn-forge-test" data-needs-crypto>Uji Key Forge (100.000 karakter)</button>
+    </div>
+    <div class="tests-out" id="tests-out" hidden>
+      <div class="tests-main">
+        <p class="source-verdict" id="source-verdict"></p>
+        <div class="table-wrap">
+          <table>
+            <caption class="sr-only">Hasil uji statistik</caption>
+            <thead><tr><th scope="col">Uji</th><th scope="col">Statistik</th><th scope="col" class="num">p-value</th><th scope="col">Hasil</th></tr></thead>
+            <tbody id="tests-body"></tbody>
+          </table>
+        </div>
+      </div>
+      <figure class="bitmap">
+        <canvas id="bitmap" width="256" height="256" role="img" aria-label="Bitmap 256 x 256 dari 65.536 byte pertama sampel"></canvas>
+        <figcaption class="hint">65.536 byte pertama sebagai piksel grayscale. Generator buruk memperlihatkan pola.</figcaption>
+      </figure>
+    </div>
+    <div id="forge-out" aria-live="polite"></div>
+    <p class="lesson">Acak secara statistik tidak sama dengan tidak bisa ditebak.</p>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Data cuaca: <a href="https://openweathermap.org/" rel="noopener">OpenWeatherMap</a>. Cek kebocoran: <a href="https://haveibeenpwned.com/Passwords" rel="noopener">Have I Been Pwned, Pwned Passwords</a>. Wordlist: <a href="https://www.eff.org/dice" rel="noopener">EFF</a> (CC BY 3.0 US). Inspirasi: Cloudflare LavaRand.</p>
+    <p>Dibuat oleh Nafhan. Semua alat berjalan di browsermu, tanpa akun, tanpa server. <a href="about.html">Cara kerja dan privasi</a>.</p>
+  </div>
+</footer>
+<script src="js/config.js"></script>
+<script src="js/core/ew.js"></script>
+<script src="js/core/weather.js"></script>
+<script src="js/core/theme.js"></script>
+<script src="js/core/crypto.js"></script>
+<script src="js/core/entropy.js"></script>
+<script src="js/core/strength.js"></script>
+<script src="js/core/stats.js"></script>
+<script src="js/workers/crack-worker.js"></script>
+<script src="js/core/ledger.js"></script>
+<script src="js/core/ui.js"></script>
+<script src="js/pages/lab.js"></script>
+</body>
+</html>

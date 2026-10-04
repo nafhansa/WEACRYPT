@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="id" data-sky="clouds" data-time="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://api.openweathermap.org https://api.pwnedpasswords.com; worker-src blob:; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Control Room · WEACRYPT</title>
+<meta name="description" content="Langit Bandung live, entropy pool, Quick Forge, ledger, dan checklist keamanan.">
+<meta name="theme-color" content="#3D5A2A">
+<meta property="og:title" content="Control Room · WEACRYPT">
+<meta property="og:description" content="Langit Bandung live, entropy pool, Quick Forge, ledger, dan checklist keamanan.">
+<meta property="og:image" content="assets/img/og-image.png">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/tools.css">
+<link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="page-dashboard">
+
+<a class="skip" href="#main">Lewati ke konten</a>
+<div class="cr-shell">
+  <aside class="cr-sidebar" aria-label="Navigasi Control Room">
+    <a class="brand" href="index.html"><span data-icon="logo"></span><span>WEACRYPT</span></a>
+    <nav class="cr-nav">
+      <a href="dashboard.html" aria-current="page"><span data-icon="dashboard"></span>Control Room</a>
+      <a href="generate.html"><span data-icon="forge"></span>Key Forge</a>
+      <a href="breach.html"><span data-icon="radar"></span>Breach Radar</a>
+      <a href="seal.html"><span data-icon="seal"></span>Sealed Message</a>
+      <a href="locker.html"><span data-icon="locker"></span>File Locker</a>
+      <a href="split.html"><span data-icon="split"></span>Secret Splitter</a>
+      <a href="ledger.html"><span data-icon="ledger"></span>Entropy Ledger</a>
+      <a href="lab.html"><span data-icon="lab"></span>Attack Lab</a>
+      <a href="verify.html"><span data-icon="verify"></span>Integrity Checker</a>
+      <a href="about.html"><span data-icon="about"></span>Tentang</a>
+    </nav>
+    <p class="cr-hint small">Tekan <kbd>Shift</kbd> + <kbd>D</kbd> untuk panel debug cuaca.</p>
+  </aside>
+
+  <main id="main" class="cr-main">
+    <header class="cr-head">
+      <div>
+        <h1>Control Room</h1>
+        <p class="muted cr-sub">Langit Bandung, kesehatan entropi, dan aktivitasmu dalam satu layar.</p>
+      </div>
+      <div data-weather-chip></div>
+    </header>
+    <p class="banner banner-info" data-weather-notice hidden></p>
+    <section class="howto" aria-label="Cara pakai halaman ini">
+    <details class="howto-box" data-howto="dashboard" open>
+      <summary><span class="howto-icon" data-icon="about"></span><span class="howto-title">Cara pakai</span><span class="howto-count">4 langkah</span></summary>
+      <ol class="howto-steps">
+        <li><span class="howto-num" aria-hidden="true">1</span><div><strong>Baca langit Bandung</strong><p>Sky Feed menampilkan cuaca live dari OpenWeatherMap. Tekan "Lihat JSON mentah" untuk melihat respons asli API.</p></div></li>
+        <li><span class="howto-num" aria-hidden="true">2</span><div><strong>Aduk entropi</strong><p>Gerakkan mouse atau jari di kotak Entropy Pool. Gerakanmu ikut dicampur, tapi keamanan tetap datang dari cincin dalam (256 bit dari sistem operasi).</p></div></li>
+        <li><span class="howto-num" aria-hidden="true">3</span><div><strong>Buat password sekali klik</strong><p>Quick Forge membuat password 20 karakter. Hasilnya tersembunyi: tekan Tampilkan untuk melihat atau Salin untuk menyalin.</p></div></li>
+        <li><span class="howto-num" aria-hidden="true">4</span><div><strong>Pantau aktivitas</strong><p>Ledger mencatat setiap aktivitas tanpa menyimpan rahasianya. Centang Security checklist untuk melacak kebiasaan aman.</p></div></li>
+      </ol>
+    </details>
+  </section>
+
+    <div class="cr-grid">
+      <section class="panel sky" aria-labelledby="sky-title">
+        <div class="row row-between">
+          <h2 id="sky-title" class="panel-title">Sky Feed</h2>
+          <span class="sky-source" id="sky-source"></span>
+        </div>
+        <div class="sky-hero">
+          <div>
+            <p class="sky-temp" id="sky-temp">--°C</p>
+            <p class="sky-desc" id="sky-desc">Memuat cuaca…</p>
+            <p class="muted small" id="sky-feels"></p>
+          </div>
+          <figure class="compass" aria-labelledby="compass-cap">
+            <svg viewBox="0 0 100 100" aria-hidden="true">
+              <circle cx="50" cy="50" r="44" class="compass-ring"/>
+              <text x="50" y="16" class="compass-n">U</text>
+              <text x="88" y="54" class="compass-l">T</text>
+              <text x="50" y="92" class="compass-l">S</text>
+              <text x="12" y="54" class="compass-l">B</text>
+              <g id="compass-needle" class="compass-needle"><path d="M50 18 L56 50 L50 56 L44 50 Z" class="needle-head"/><path d="M50 82 L56 50 L50 56 L44 50 Z" class="needle-tail"/></g>
+            </svg>
+            <figcaption id="compass-cap" class="small"></figcaption>
+          </figure>
+        </div>
+        <dl class="sky-grid">
+          <div><dt><span data-icon="droplet"></span>Kelembapan</dt><dd><span id="sky-hum">-</span><span class="bar" aria-hidden="true"><span id="sky-hum-bar"></span></span></dd></div>
+          <div><dt><span data-icon="cloud"></span>Awan</dt><dd><span id="sky-clouds">-</span><span class="bar" aria-hidden="true"><span id="sky-clouds-bar"></span></span></dd></div>
+          <div><dt><span data-icon="gauge"></span>Tekanan</dt><dd id="sky-press">-</dd></div>
+          <div><dt><span data-icon="eye"></span>Jarak pandang</dt><dd id="sky-vis">-</dd></div>
+          <div><dt><span data-icon="wind"></span>Angin</dt><dd id="sky-wind">-</dd></div>
+          <div><dt><span data-icon="rain"></span>Hujan 1 jam</dt><dd id="sky-rain">-</dd></div>
+          <div><dt><span data-icon="sunrise"></span>Matahari terbit</dt><dd id="sky-sunrise">-</dd></div>
+          <div><dt><span data-icon="sunset"></span>Matahari terbenam</dt><dd id="sky-sunset">-</dd></div>
+        </dl>
+        <p class="small muted" id="sky-age"></p>
+        <div class="row action-row">
+          <button type="button" class="btn btn-secondary btn-sm" id="btn-raw" aria-expanded="false" aria-controls="raw-panel"><span data-icon="hash"></span>Lihat JSON mentah</button>
+          <button type="button" class="btn btn-secondary btn-sm" id="btn-reload"><span data-icon="refresh"></span><span id="reload-label">Muat ulang</span></button>
+        </div>
+        <div class="raw-panel" id="raw-panel" hidden>
+          <p class="small muted">Respons asli OpenWeatherMap. Request: <span class="mono" id="raw-url"></span></p>
+          <pre class="code-block mono raw-json" id="raw-json" tabindex="0"></pre>
+          <button type="button" class="btn btn-ghost btn-sm" id="btn-copy-raw"><span data-icon="copy"></span>Salin JSON</button>
+        </div>
+      </section>
+
+      <section class="panel pool" aria-labelledby="pool-title">
+        <h2 id="pool-title" class="panel-title">Entropy Pool</h2>
+        <figure class="gauge" aria-labelledby="gauge-cap">
+          <svg viewBox="0 0 200 200" role="img" aria-labelledby="gauge-title">
+            <title id="gauge-title">Tiga cincin entropi</title>
+            <circle class="ring-track" cx="100" cy="100" r="86"/>
+            <circle class="ring ring-jitter" id="ring-jitter" cx="100" cy="100" r="86" pathLength="100"/>
+            <circle class="ring-track" cx="100" cy="100" r="68"/>
+            <circle class="ring ring-weather" id="ring-weather" cx="100" cy="100" r="68" pathLength="100"/>
+            <circle class="ring-track ring-track-os" cx="100" cy="100" r="46"/>
+            <circle class="ring ring-os" cx="100" cy="100" r="46" pathLength="100"/>
+            <text x="100" y="96" class="gauge-big">256</text>
+            <text x="100" y="116" class="gauge-small">bit OS</text>
+          </svg>
+          <figcaption id="gauge-cap">
+            <ul class="gauge-legend">
+              <li><span class="lg lg-os"></span><strong>Cincin dalam: OS CSPRNG</strong>, selalu penuh 256 bit.</li>
+              <li><span class="lg lg-weather"></span><strong>Cincin tengah: cuaca</strong>, <span class="tip" tabindex="0" aria-describedby="tip-weather">publik, 0 bit rahasia</span><span role="tooltip" id="tip-weather" class="tip-body">Siapa pun bisa mengambil data cuaca yang sama dari OpenWeatherMap, jadi kontribusi rahasianya nol. Ia hanya membuat hasil unik.</span></li>
+              <li><span class="lg lg-jitter"></span><strong>Cincin luar: gerakanmu</strong>, <span id="jitter-count">0</span> / 256 sampel.</li>
+            </ul>
+          </figcaption>
+        </figure>
+        <p class="pool-copy">Keamananmu datang dari cincin dalam. Cuaca dan gerakanmu bikin hasilnya unik, bukan bikin aman.</p>
+        <div class="stir" id="stir" aria-describedby="stir-help">
+          <canvas id="stir-canvas" aria-hidden="true"></canvas>
+          <p class="stir-label" id="stir-help">Aduk lava di sini: gerakkan mouse atau jari</p>
+        </div>
+        <div class="progress progress-thin" role="progressbar" aria-label="Sampel jitter terkumpul" aria-valuemin="0" aria-valuemax="256" aria-valuenow="0" id="jitter-bar"><span></span></div>
+      </section>
+
+      <section class="panel quick" aria-labelledby="quick-title">
+        <div class="quick-head">
+          <div>
+            <h2 id="quick-title" class="panel-title">Quick Forge</h2>
+            <p class="muted small">20 karakter, semua jenis karakter, ≈ 131 bit. Satu klik.</p>
+          </div>
+          <button type="button" class="btn btn-primary" id="btn-quick" data-needs-crypto>Buat password</button>
+        </div>
+        <div id="quick-secret"></div>
+        <div id="quick-stamp" hidden></div>
+      </section>
+
+      <section class="panel feed" aria-labelledby="feed-title">
+        <div class="row row-between">
+          <h2 id="feed-title" class="panel-title">Ledger</h2>
+          <p class="chain-badge" id="chain-badge" aria-live="polite"></p>
+        </div>
+        <ol class="feed-list" id="feed-list"></ol>
+        <p class="empty-state small" id="feed-empty">Belum ada blok. Buat password pertama untuk menambang blok genesis.</p>
+        <a class="btn btn-ghost btn-sm" href="ledger.html">Buka Entropy Ledger</a>
+      </section>
+
+      <section class="panel checklist" aria-labelledby="check-title">
+        <div class="row row-between">
+          <h2 id="check-title" class="panel-title">Security checklist</h2>
+          <p class="check-pct mono" id="check-pct" aria-live="polite">0%</p>
+        </div>
+        <div class="progress progress-thin" role="progressbar" aria-labelledby="check-title" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="check-bar"><span></span></div>
+        <ul class="check-list" id="check-list"></ul>
+        <p class="hint">Centang sendiri. Disimpan di browser ini, tidak berisi rahasia.</p>
+      </section>
+    </div>
+  </main>
+</div>
+
+<nav class="cr-tabbar" aria-label="Navigasi bawah">
+  <a href="dashboard.html" aria-current="page"><span data-icon="dashboard"></span><span>Control</span></a>
+  <a href="generate.html"><span data-icon="forge"></span><span>Forge</span></a>
+  <a href="breach.html"><span data-icon="radar"></span><span>Radar</span></a>
+  <a href="seal.html"><span data-icon="seal"></span><span>Seal</span></a>
+  <details class="navmenu cr-more">
+    <summary><span data-icon="more"></span><span>Lainnya</span></summary>
+    <div class="navmenu-list">
+      <a href="locker.html"><span data-icon="locker"></span><span>File Locker</span></a>
+      <a href="split.html"><span data-icon="split"></span><span>Secret Splitter</span></a>
+      <a href="ledger.html"><span data-icon="ledger"></span><span>Entropy Ledger</span></a>
+      <a href="lab.html"><span data-icon="lab"></span><span>Attack Lab</span></a>
+      <a href="verify.html"><span data-icon="verify"></span><span>Integrity Checker</span></a>
+      <a href="open.html"><span data-icon="unlock"></span><span>Buka pesan</span></a>
+      <a href="about.html"><span data-icon="about"></span><span>Tentang</span></a>
+    </div>
+  </details>
+</nav>
+
+<script src="js/config.js"></script>
+<script src="js/core/ew.js"></script>
+<script src="js/core/weather.js"></script>
+<script src="js/core/theme.js"></script>
+<script src="js/core/crypto.js"></script>
+<script src="js/core/entropy.js"></script>
+<script src="js/core/strength.js"></script>
+<script src="js/workers/crack-worker.js"></script>
+<script src="js/core/ledger.js"></script>
+<script src="js/core/ui.js"></script>
+<script src="js/pages/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="id" data-sky="clouds" data-time="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://api.openweathermap.org https://api.pwnedpasswords.com; worker-src blob:; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Buka pesan tersegel · WEACRYPT</title>
+<meta name="description" content="Buka pesan tersegel WEACRYPT dari link atau blok armored.">
+<meta name="theme-color" content="#3D5A2A">
+<meta property="og:title" content="Buka pesan tersegel · WEACRYPT">
+<meta property="og:description" content="Buka pesan tersegel WEACRYPT dari link atau blok armored.">
+<meta property="og:image" content="assets/img/og-image.png">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/tools.css">
+</head>
+<body class="page-open">
+<a class="skip" href="#main">Lewati ke konten</a>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="index.html"><span data-icon="logo"></span><span>WEACRYPT</span></a>
+    <nav class="topbar-nav" aria-label="Navigasi utama">
+      <a href="dashboard.html" class="hide-sm">Control Room</a>
+      <details class="navmenu">
+        <summary aria-current="true">Alat</summary>
+        <div class="navmenu-list">
+          <a href="dashboard.html" class="show-sm"><span data-icon="dashboard"></span><span>Control Room<span class="hint">Langit, entropi, ledger</span></span></a>
+          <a href="generate.html"><span data-icon="forge"></span><span>Key Forge<span class="hint">Password, passphrase, PIN, kunci</span></span></a>
+          <a href="breach.html"><span data-icon="radar"></span><span>Breach Radar<span class="hint">Cek kebocoran password</span></span></a>
+          <a href="seal.html"><span data-icon="seal"></span><span>Sealed Message<span class="hint">Segel pesan jadi link</span></span></a>
+          <a href="open.html" aria-current="page"><span data-icon="unlock"></span><span>Buka pesan<span class="hint">Buka link atau blok tersegel</span></span></a>
+          <a href="locker.html"><span data-icon="locker"></span><span>File Locker<span class="hint">Kunci file dengan AES-256</span></span></a>
+          <a href="split.html"><span data-icon="split"></span><span>Secret Splitter<span class="hint">Pecah seed phrase</span></span></a>
+          <a href="ledger.html"><span data-icon="ledger"></span><span>Entropy Ledger<span class="hint">Rantai aktivitas tamper-evident</span></span></a>
+          <a href="lab.html"><span data-icon="lab"></span><span>Attack Lab<span class="hint">Serangan nyata dan uji acak</span></span></a>
+          <a href="verify.html"><span data-icon="verify"></span><span>Integrity Checker<span class="hint">Hash dan cocokkan file</span></span></a>
+          <a href="about.html" class="show-sm"><span data-icon="about"></span><span>Tentang<span class="hint">Cara kerja, privasi, FAQ</span></span></a>
+        </div>
+      </details>
+      <a href="about.html" class="hide-sm">Tentang</a>
+    </nav>
+    <div data-weather-chip></div>
+  </div>
+</header>
+<main id="main" class="wrap-narrow tool-page">
+  <section class="tool-hero">
+    <div>
+      <p class="eyebrow">Sealed Message</p>
+      <h1>Buka pesan tersegel.</h1>
+      <p class="lede">Dekripsi terjadi di browser ini. Link, kunci, dan isi pesan tidak dikirim ke mana pun.</p>
+    </div>
+  </section>
+
+  <section class="howto" aria-label="Cara pakai halaman ini">
+    <details class="howto-box" data-howto="open" open>
+      <summary><span class="howto-icon" data-icon="about"></span><span class="howto-title">Cara pakai</span><span class="howto-count">4 langkah</span></summary>
+      <ol class="howto-steps">
+        <li><span class="howto-num" aria-hidden="true">1</span><div><strong>Buka link dari pengirim</strong><p>Pesan di link langsung terdeteksi. Bisa juga menempel link atau blok armored di kotak.</p></div></li>
+        <li><span class="howto-num" aria-hidden="true">2</span><div><strong>Masukkan passphrase bila diminta</strong><p>Passphrase diberikan pengirim lewat jalur lain, misalnya telepon.</p></div></li>
+        <li><span class="howto-num" aria-hidden="true">3</span><div><strong>Tekan Buka segel</strong><p>Pesan, catatan, dan stempel cuaca pengirim muncul. Link otomatis dihapus dari address bar.</p></div></li>
+        <li><span class="howto-num" aria-hidden="true">4</span><div><strong>Hapus dari layar</strong><p>Setelah selesai membaca atau menyalin, hapus pesan dari layar.</p></div></li>
+      </ol>
+    </details>
+  </section>
+
+  <section class="panel" aria-labelledby="open-title" id="open-panel">
+    <h2 id="open-title" class="panel-title">Pesan yang mau dibuka</h2>
+    <form id="form-open" novalidate>
+      <div id="detected" class="status status-ok detected" hidden>
+        <span data-icon="lock"></span>
+        <div><strong id="detected-title">Pesan tersegel terdeteksi di link.</strong><p id="detected-sub"></p></div>
+      </div>
+      <div class="field" id="paste-field">
+        <label for="paste">Tempel link atau blok pesan tersegel</label>
+        <textarea id="paste" class="mono secret-input" rows="5" autocomplete="off" spellcheck="false" autocapitalize="off" placeholder="https://…/open.html#v1.r.… atau -----BEGIN ENTROPY WALL SEALED MESSAGE-----"></textarea>
+      </div>
+      <div class="field" id="pass-field" hidden>
+        <label for="pass">Passphrase <span class="hint">Pengirim seharusnya memberikannya lewat kanal lain.</span></label>
+        <input type="password" id="pass" class="secret-input" autocomplete="off" spellcheck="false" autocapitalize="off" autocorrect="off">
+      </div>
+      <p class="error-text" id="open-error" role="alert"></p>
+      <button type="submit" class="btn btn-primary" id="btn-open" data-needs-crypto>Buka segel</button>
+    </form>
+  </section>
+
+  <section class="panel opened" id="opened" aria-labelledby="opened-title" hidden>
+    <h2 id="opened-title" class="panel-title">Isi pesan</h2>
+    <div class="message-box" id="message" tabindex="0"></div>
+    <div class="status status-ok note-box" id="hint-box" hidden>
+      <span data-icon="about"></span>
+      <div><strong>Catatan dari pengirim</strong><p id="hint-text"></p></div>
+    </div>
+    <div id="stamp-out" hidden></div>
+    <p class="hint" id="sealed-at"></p>
+    <div class="row action-row">
+      <button type="button" class="btn btn-secondary" id="btn-copy"><span data-icon="copy"></span>Salin pesan</button>
+      <button type="button" class="btn btn-ghost" id="btn-wipe"><span data-icon="x"></span>Hapus dari layar</button>
+    </div>
+  </section>
+
+  <p class="center-note"><a href="seal.html">Segel pesanmu sendiri</a></p>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Data cuaca: <a href="https://openweathermap.org/" rel="noopener">OpenWeatherMap</a>. Cek kebocoran: <a href="https://haveibeenpwned.com/Passwords" rel="noopener">Have I Been Pwned, Pwned Passwords</a>. Wordlist: <a href="https://www.eff.org/dice" rel="noopener">EFF</a> (CC BY 3.0 US). Inspirasi: Cloudflare LavaRand.</p>
+    <p>Dibuat oleh Nafhan. Semua alat berjalan di browsermu, tanpa akun, tanpa server. <a href="about.html">Cara kerja dan privasi</a>.</p>
+  </div>
+</footer>
+<script src="js/config.js"></script>
+<script src="js/core/ew.js"></script>
+<script src="js/core/weather.js"></script>
+<script src="js/core/theme.js"></script>
+<script src="js/core/crypto.js"></script>
+<script src="js/core/entropy.js"></script>
+<script src="js/core/strength.js"></script>
+<script src="js/workers/crack-worker.js"></script>
+<script src="js/core/ledger.js"></script>
+<script src="js/core/ui.js"></script>
+<script src="js/pages/open.js"></script>
+</body>
+</html>

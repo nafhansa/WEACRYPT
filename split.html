@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="id" data-sky="clouds" data-time="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://api.openweathermap.org https://api.pwnedpasswords.com; worker-src blob:; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Secret Splitter · WEACRYPT</title>
+<meta name="description" content="Pecah seed phrase atau master password dengan Shamir Secret Sharing: butuh k dari n share untuk membuka.">
+<meta name="theme-color" content="#3D5A2A">
+<meta property="og:title" content="Secret Splitter · WEACRYPT">
+<meta property="og:description" content="Pecah seed phrase atau master password dengan Shamir Secret Sharing: butuh k dari n share untuk membuka.">
+<meta property="og:image" content="assets/img/og-image.png">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/tools.css">
+</head>
+<body class="page-split">
+<a class="skip" href="#main">Lewati ke konten</a>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="index.html"><span data-icon="logo"></span><span>WEACRYPT</span></a>
+    <nav class="topbar-nav" aria-label="Navigasi utama">
+      <a href="dashboard.html" class="hide-sm">Control Room</a>
+      <details class="navmenu">
+        <summary aria-current="true">Alat</summary>
+        <div class="navmenu-list">
+          <a href="dashboard.html" class="show-sm"><span data-icon="dashboard"></span><span>Control Room<span class="hint">Langit, entropi, ledger</span></span></a>
+          <a href="generate.html"><span data-icon="forge"></span><span>Key Forge<span class="hint">Password, passphrase, PIN, kunci</span></span></a>
+          <a href="breach.html"><span data-icon="radar"></span><span>Breach Radar<span class="hint">Cek kebocoran password</span></span></a>
+          <a href="seal.html"><span data-icon="seal"></span><span>Sealed Message<span class="hint">Segel pesan jadi link</span></span></a>
+          <a href="open.html"><span data-icon="unlock"></span><span>Buka pesan<span class="hint">Buka link atau blok tersegel</span></span></a>
+          <a href="locker.html"><span data-icon="locker"></span><span>File Locker<span class="hint">Kunci file dengan AES-256</span></span></a>
+          <a href="split.html" aria-current="page"><span data-icon="split"></span><span>Secret Splitter<span class="hint">Pecah seed phrase</span></span></a>
+          <a href="ledger.html"><span data-icon="ledger"></span><span>Entropy Ledger<span class="hint">Rantai aktivitas tamper-evident</span></span></a>
+          <a href="lab.html"><span data-icon="lab"></span><span>Attack Lab<span class="hint">Serangan nyata dan uji acak</span></span></a>
+          <a href="verify.html"><span data-icon="verify"></span><span>Integrity Checker<span class="hint">Hash dan cocokkan file</span></span></a>
+          <a href="about.html" class="show-sm"><span data-icon="about"></span><span>Tentang<span class="hint">Cara kerja, privasi, FAQ</span></span></a>
+        </div>
+      </details>
+      <a href="about.html" class="hide-sm">Tentang</a>
+    </nav>
+    <div data-weather-chip></div>
+  </div>
+</header>
+<main id="main" class="wrap tool-page">
+  <section class="tool-hero no-print">
+    <div>
+      <p class="eyebrow">Secret Splitter</p>
+      <h1>Pecah rahasia jadi beberapa bagian.</h1>
+      <p class="lede">Seed phrase, master password, atau kode recovery 2FA dipecah dengan Shamir Secret Sharing. Butuh minimal <em>k</em> share untuk membuka. Kurang dari itu, tidak ada informasi apa pun yang bocor.</p>
+    </div>
+  </section>
+
+  <section class="howto" aria-label="Cara pakai halaman ini">
+    <details class="howto-box" data-howto="split" open>
+      <summary><span class="howto-icon" data-icon="about"></span><span class="howto-title">Cara pakai</span><span class="howto-count">4 langkah</span></summary>
+      <ol class="howto-steps">
+        <li><span class="howto-num" aria-hidden="true">1</span><div><strong>Tempel rahasia</strong><p>Misalnya 12 atau 24 kata seed phrase. Teks disamarkan sampai kamu menekan Tampilkan.</p></div></li>
+        <li><span class="howto-num" aria-hidden="true">2</span><div><strong>Atur k dan n</strong><p>n adalah jumlah share yang dibuat, k adalah jumlah minimal share untuk membuka. Contoh: 2 dari 3.</p></div></li>
+        <li><span class="howto-num" aria-hidden="true">3</span><div><strong>Tekan Pecah rahasia</strong><p>Cetak atau unduh kartu share. Simpan tiap share di tempat berbeda.</p></div></li>
+        <li><span class="howto-num" aria-hidden="true">4</span><div><strong>Memulihkan</strong><p>Di tab Gabungkan, tempel minimal k share (satu per baris), lalu tekan Gabungkan.</p></div></li>
+      </ol>
+    </details>
+  </section>
+
+  <div class="tabs no-print">
+    <div class="tablist" role="tablist" aria-label="Mode Secret Splitter">
+      <button role="tab" id="tab-split" data-tab="split" aria-controls="pane-split" aria-selected="true">Pecah</button>
+      <button role="tab" id="tab-combine" data-tab="combine" aria-controls="pane-combine" aria-selected="false" tabindex="-1">Gabungkan</button>
+    </div>
+
+    <div role="tabpanel" id="pane-split" aria-labelledby="tab-split">
+      <div class="tool-grid">
+        <section class="panel" aria-labelledby="split-title">
+          <h2 id="split-title" class="panel-title">Rahasia</h2>
+          <form id="form-split" novalidate>
+            <div class="field">
+              <label for="secret">Rahasia yang dipecah <span class="hint">Maksimal 1.024 byte. Contoh: 12 atau 24 kata seed phrase.</span></label>
+              <textarea id="secret" class="mono secret-input is-masked" rows="4" autocomplete="off" spellcheck="false" autocapitalize="off" autocorrect="off"></textarea>
+              <div class="row row-between">
+                <button type="button" class="btn btn-ghost btn-sm" id="secret-toggle" aria-pressed="false" aria-controls="secret"><span data-icon="eye"></span><span>Tampilkan</span></button>
+                <p class="counter" id="secret-counter">0 / 1.024 byte</p>
+              </div>
+            </div>
+            <div class="stepper-row">
+              <div class="field">
+                <label for="k">Ambang (k) <span class="hint">Share minimal untuk membuka</span></label>
+                <div class="stepper">
+                  <button type="button" class="btn btn-secondary" data-step="k:-1" aria-label="Kurangi k">−</button>
+                  <input type="number" id="k" min="2" max="10" value="2" inputmode="numeric">
+                  <button type="button" class="btn btn-secondary" data-step="k:1" aria-label="Tambah k">+</button>
+                </div>
+              </div>
+              <div class="field">
+                <label for="n">Jumlah share (n)</label>
+                <div class="stepper">
+                  <button type="button" class="btn btn-secondary" data-step="n:-1" aria-label="Kurangi n">−</button>
+                  <input type="number" id="n" min="2" max="10" value="3" inputmode="numeric">
+                  <button type="button" class="btn btn-secondary" data-step="n:1" aria-label="Tambah n">+</button>
+                </div>
+              </div>
+            </div>
+            <p class="error-text" id="split-error" role="alert"></p>
+            <button type="submit" class="btn btn-primary" id="btn-split" data-needs-crypto>Pecah rahasia</button>
+          </form>
+        </section>
+
+        <section class="panel split-visual-panel" aria-labelledby="vis-title">
+          <h2 id="vis-title" class="panel-title">Ilustrasi ambang</h2>
+          <div class="split-visual" id="split-visual" aria-hidden="true"></div>
+          <p id="vis-caption" class="vis-caption" aria-live="polite"></p>
+          <div class="edu">
+            <h3>Contoh: seed phrase 2 dari 3</h3>
+            <p>Share 1 kamu simpan, share 2 dititipkan ke orang tua, share 3 di brankas bank. Kehilangan satu share tidak masalah, dan satu orang yang mencuri satu share tidak mendapat apa pun.</p>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div role="tabpanel" id="pane-combine" aria-labelledby="tab-combine" hidden>
+      <div class="tool-grid">
+        <section class="panel" aria-labelledby="comb-title">
+          <h2 id="comb-title" class="panel-title">Share yang dimiliki</h2>
+          <div class="field">
+            <label for="shares-in">Tempel share, satu per baris</label>
+            <textarea id="shares-in" class="mono secret-input" rows="7" autocomplete="off" spellcheck="false" autocapitalize="off" autocorrect="off" placeholder="EW-SSS1-2of3-1-ab12-…-c0de"></textarea>
+          </div>
+          <ul class="share-checks" id="share-checks" aria-live="polite"></ul>
+          <p class="error-text" id="combine-error" role="alert"></p>
+          <button type="button" class="btn btn-primary" id="btn-combine" data-needs-crypto>Gabungkan</button>
+        </section>
+        <section class="panel" aria-labelledby="rec-title">
+          <h2 id="rec-title" class="panel-title">Rahasia yang dipulihkan</h2>
+          <div id="recovered"></div>
+          <p class="hint" id="recovered-note"></p>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <section class="shares-section" id="shares-section" aria-labelledby="shares-title" hidden>
+    <div class="row row-between no-print">
+      <h2 id="shares-title">Kartu share</h2>
+      <div class="row">
+        <button type="button" class="btn btn-secondary" id="btn-print"><span data-icon="print"></span>Cetak</button>
+        <button type="button" class="btn btn-secondary" id="btn-download-all"><span data-icon="download"></span>Unduh semua (.txt)</button>
+        <button type="button" class="btn btn-ghost" id="btn-clear-shares"><span data-icon="x"></span>Hapus dari layar</button>
+      </div>
+    </div>
+    <p class="hint no-print">Tiap kartu dicetak setengah halaman. Simpan di tempat berbeda, jangan pernah satu tempat.</p>
+    <div class="share-cards" id="share-cards"></div>
+  </section>
+
+  <aside class="panel disclaimer no-print" aria-labelledby="disc-title">
+    <h2 id="disc-title" class="panel-title">Catatan jujur</h2>
+    <p>Format ini milik WEACRYPT, bukan standar SLIP-39. Untuk wallet hardware yang mendukung SLIP-39, pakai fitur bawaan wallet-mu. Simpan juga Python CLI agar share tetap bisa digabung tanpa situs ini:</p>
+    <pre class="code-block mono">python python/ewall_cli.py shamir-combine share1.txt share2.txt</pre>
+  </aside>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Data cuaca: <a href="https://openweathermap.org/" rel="noopener">OpenWeatherMap</a>. Cek kebocoran: <a href="https://haveibeenpwned.com/Passwords" rel="noopener">Have I Been Pwned, Pwned Passwords</a>. Wordlist: <a href="https://www.eff.org/dice" rel="noopener">EFF</a> (CC BY 3.0 US). Inspirasi: Cloudflare LavaRand.</p>
+    <p>Dibuat oleh Nafhan. Semua alat berjalan di browsermu, tanpa akun, tanpa server. <a href="about.html">Cara kerja dan privasi</a>.</p>
+  </div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js" integrity="sha384-mZT2gIty7ZDdOGkxfP6joZcYdMW1Jvj9dRlfpTmaJAKKXTqzygtB22k7FLe+KZC1" crossorigin="anonymous" referrerpolicy="no-referrer" async></script>
+<script src="js/config.js"></script>
+<script src="js/core/ew.js"></script>
+<script src="js/core/weather.js"></script>
+<script src="js/core/theme.js"></script>
+<script src="js/core/crypto.js"></script>
+<script src="js/core/entropy.js"></script>
+<script src="js/core/strength.js"></script>
+<script src="js/core/shamir.js"></script>
+<script src="js/workers/crack-worker.js"></script>
+<script src="js/core/ledger.js"></script>
+<script src="js/core/ui.js"></script>
+<script src="js/pages/split.js"></script>
+</body>
+</html>

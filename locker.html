@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="id" data-sky="clouds" data-time="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://api.openweathermap.org https://api.pwnedpasswords.com; worker-src blob:; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>File Locker · WEACRYPT</title>
+<meta name="description" content="Kunci dan buka file dengan AES-256-GCM langsung di browser, format .ewall.">
+<meta name="theme-color" content="#3D5A2A">
+<meta property="og:title" content="File Locker · WEACRYPT">
+<meta property="og:description" content="Kunci dan buka file dengan AES-256-GCM langsung di browser, format .ewall.">
+<meta property="og:image" content="assets/img/og-image.png">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/tools.css">
+</head>
+<body class="page-locker">
+<a class="skip" href="#main">Lewati ke konten</a>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="index.html"><span data-icon="logo"></span><span>WEACRYPT</span></a>
+    <nav class="topbar-nav" aria-label="Navigasi utama">
+      <a href="dashboard.html" class="hide-sm">Control Room</a>
+      <details class="navmenu">
+        <summary aria-current="true">Alat</summary>
+        <div class="navmenu-list">
+          <a href="dashboard.html" class="show-sm"><span data-icon="dashboard"></span><span>Control Room<span class="hint">Langit, entropi, ledger</span></span></a>
+          <a href="generate.html"><span data-icon="forge"></span><span>Key Forge<span class="hint">Password, passphrase, PIN, kunci</span></span></a>
+          <a href="breach.html"><span data-icon="radar"></span><span>Breach Radar<span class="hint">Cek kebocoran password</span></span></a>
+          <a href="seal.html"><span data-icon="seal"></span><span>Sealed Message<span class="hint">Segel pesan jadi link</span></span></a>
+          <a href="open.html"><span data-icon="unlock"></span><span>Buka pesan<span class="hint">Buka link atau blok tersegel</span></span></a>
+          <a href="locker.html" aria-current="page"><span data-icon="locker"></span><span>File Locker<span class="hint">Kunci file dengan AES-256</span></span></a>
+          <a href="split.html"><span data-icon="split"></span><span>Secret Splitter<span class="hint">Pecah seed phrase</span></span></a>
+          <a href="ledger.html"><span data-icon="ledger"></span><span>Entropy Ledger<span class="hint">Rantai aktivitas tamper-evident</span></span></a>
+          <a href="lab.html"><span data-icon="lab"></span><span>Attack Lab<span class="hint">Serangan nyata dan uji acak</span></span></a>
+          <a href="verify.html"><span data-icon="verify"></span><span>Integrity Checker<span class="hint">Hash dan cocokkan file</span></span></a>
+          <a href="about.html" class="show-sm"><span data-icon="about"></span><span>Tentang<span class="hint">Cara kerja, privasi, FAQ</span></span></a>
+        </div>
+      </details>
+      <a href="about.html" class="hide-sm">Tentang</a>
+    </nav>
+    <div data-weather-chip></div>
+  </div>
+</header>
+<main id="main" class="wrap tool-page">
+  <section class="tool-hero">
+    <div>
+      <p class="eyebrow">File Locker</p>
+      <h1>Kunci file dengan AES-256, langsung di browser.</h1>
+      <p class="lede">Scan KTP, transkrip, kontrak. File dienkripsi lokal jadi <code>.ewall</code>, nama aslinya ikut disembunyikan. Tidak ada yang diunggah.</p>
+    </div>
+  </section>
+
+  <section class="howto" aria-label="Cara pakai halaman ini">
+    <details class="howto-box" data-howto="locker" open>
+      <summary><span class="howto-icon" data-icon="about"></span><span class="howto-title">Cara pakai</span><span class="howto-count">4 langkah</span></summary>
+      <ol class="howto-steps">
+        <li><span class="howto-num" aria-hidden="true">1</span><div><strong>Pilih file</strong><p>Di tab Kunci file, tarik file ke kotak atau tekan Pilih file. Boleh banyak sekaligus.</p></div></li>
+        <li><span class="howto-num" aria-hidden="true">2</span><div><strong>Buat passphrase</strong><p>Minimal 12 karakter, atau tekan "Buat passphrase kuat". Simpan passphrase-nya: tanpa itu file tidak bisa dibuka.</p></div></li>
+        <li><span class="howto-num" aria-hidden="true">3</span><div><strong>Tekan Kunci file</strong><p>File .ewall terunduh dengan nama acak. Nama asli tersimpan di dalam file terenkripsi.</p></div></li>
+        <li><span class="howto-num" aria-hidden="true">4</span><div><strong>Membuka kembali</strong><p>Di tab Buka file, pilih file .ewall, masukkan passphrase, lalu unduh file aslinya.</p></div></li>
+      </ol>
+    </details>
+  </section>
+
+  <div class="tabs">
+    <div class="tablist" role="tablist" aria-label="Mode File Locker">
+      <button role="tab" id="tab-lock" data-tab="lock" aria-controls="pane-lock" aria-selected="true">Kunci file</button>
+      <button role="tab" id="tab-unlock" data-tab="unlock" aria-controls="pane-unlock" aria-selected="false" tabindex="-1">Buka file</button>
+    </div>
+
+    <div role="tabpanel" id="pane-lock" aria-labelledby="tab-lock">
+      <div class="tool-grid">
+        <section class="panel" aria-labelledby="lock-title">
+          <h2 id="lock-title" class="panel-title">File yang dikunci</h2>
+          <div id="lock-drop"></div>
+          <ul class="file-list" id="lock-files" aria-live="polite"></ul>
+          <p class="hint">Boleh banyak file sekaligus; tiap file jadi .ewall sendiri. Batas 200 MB per file.</p>
+        </section>
+        <section class="panel" aria-labelledby="lpass-title">
+          <h2 id="lpass-title" class="panel-title">Passphrase</h2>
+          <form id="form-lock" novalidate>
+            <div class="field">
+              <label for="lpass">Passphrase <span class="hint">Minimal 12 karakter. Tanpa passphrase ini, file tidak bisa dibuka siapa pun, termasuk kamu.</span></label>
+              <div class="field-row">
+                <input type="password" id="lpass" class="secret-input" autocomplete="new-password" spellcheck="false" autocapitalize="off" autocorrect="off">
+                <button type="button" class="btn btn-secondary" id="lpass-toggle" aria-pressed="false" aria-controls="lpass lpass2"><span data-icon="eye"></span><span>Tampilkan</span></button>
+              </div>
+            </div>
+            <div class="field">
+              <label for="lpass2">Ulangi passphrase</label>
+              <input type="password" id="lpass2" class="secret-input" autocomplete="new-password" spellcheck="false" autocapitalize="off" autocorrect="off">
+            </div>
+            <div id="lpass-strength" class="field"></div>
+            <div class="row">
+              <button type="button" class="btn btn-secondary" id="btn-genpass" data-needs-crypto>Buat passphrase kuat</button>
+            </div>
+            <p class="error-text" id="lock-error" role="alert"></p>
+            <button type="submit" class="btn btn-primary" id="btn-lock" data-needs-crypto>Kunci file</button>
+          </form>
+          <div class="progress-block" id="lock-progress" hidden>
+            <p class="progress-label" id="lock-stage" aria-live="polite"></p>
+            <div class="progress" role="progressbar" aria-labelledby="lock-stage" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="lock-bar"><span></span></div>
+          </div>
+          <div id="lock-done" class="result-area" aria-live="polite"></div>
+        </section>
+      </div>
+    </div>
+
+    <div role="tabpanel" id="pane-unlock" aria-labelledby="tab-unlock" hidden>
+      <div class="tool-grid">
+        <section class="panel" aria-labelledby="unlock-title">
+          <h2 id="unlock-title" class="panel-title">File .ewall</h2>
+          <div id="unlock-drop"></div>
+          <ul class="file-list" id="unlock-file" aria-live="polite"></ul>
+          <form id="form-unlock" novalidate>
+            <div class="field">
+              <label for="upass">Passphrase</label>
+              <input type="password" id="upass" class="secret-input" autocomplete="off" spellcheck="false" autocapitalize="off" autocorrect="off">
+            </div>
+            <p class="error-text" id="unlock-error" role="alert"></p>
+            <button type="submit" class="btn btn-primary" id="btn-unlock" data-needs-crypto>Buka file</button>
+          </form>
+          <div class="progress-block" id="unlock-progress" hidden>
+            <p class="progress-label" id="unlock-stage" aria-live="polite"></p>
+            <div class="progress" role="progressbar" aria-labelledby="unlock-stage" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="unlock-bar"><span></span></div>
+          </div>
+        </section>
+        <section class="panel" aria-labelledby="meta-title">
+          <h2 id="meta-title" class="panel-title">Isi file</h2>
+          <div id="unlock-empty" class="empty-state"><p>Metadata dan pratinjau muncul setelah file berhasil dibuka.</p></div>
+          <div id="unlock-out" hidden>
+            <dl class="meta-list" id="meta-list"></dl>
+            <div id="ustamp" hidden></div>
+            <div class="preview" id="preview"></div>
+            <div class="row action-row">
+              <button type="button" class="btn btn-primary" id="btn-save"><span data-icon="download"></span><span id="btn-save-label">Unduh file asli</span></button>
+              <button type="button" class="btn btn-ghost" id="btn-forget"><span data-icon="x"></span>Hapus dari memori</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <aside class="panel cli-note" aria-labelledby="cli-title">
+    <h2 id="cli-title" class="panel-title">Kalau situs ini hilang?</h2>
+    <p>Format <code>.ewall</code> terbuka dan terdokumentasi. File tetap bisa dibuka offline dengan Python CLI yang ikut di folder proyek:</p>
+    <pre class="code-block mono">python python/ewall_cli.py decrypt locked-7f3a9c12.ewall</pre>
+  </aside>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Data cuaca: <a href="https://openweathermap.org/" rel="noopener">OpenWeatherMap</a>. Cek kebocoran: <a href="https://haveibeenpwned.com/Passwords" rel="noopener">Have I Been Pwned, Pwned Passwords</a>. Wordlist: <a href="https://www.eff.org/dice" rel="noopener">EFF</a> (CC BY 3.0 US). Inspirasi: Cloudflare LavaRand.</p>
+    <p>Dibuat oleh Nafhan. Semua alat berjalan di browsermu, tanpa akun, tanpa server. <a href="about.html">Cara kerja dan privasi</a>.</p>
+  </div>
+</footer>
+<script src="js/config.js"></script>
+<script src="js/core/ew.js"></script>
+<script src="js/core/weather.js"></script>
+<script src="js/core/theme.js"></script>
+<script src="js/core/crypto.js"></script>
+<script src="js/core/entropy.js"></script>
+<script src="js/core/strength.js"></script>
+<script src="js/data/wordlist-eff.js"></script>
+<script src="js/data/common-passwords.js"></script>
+<script src="js/workers/crack-worker.js"></script>
+<script src="js/core/ledger.js"></script>
+<script src="js/core/ui.js"></script>
+<script src="js/pages/locker.js"></script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="id" data-sky="clouds" data-time="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://api.openweathermap.org https://api.pwnedpasswords.com; worker-src blob:; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Sealed Message · WEACRYPT</title>
+<meta name="description" content="Segel pesan rahasia jadi link terenkripsi AES-256-GCM. Kunci ada di URL fragment, tidak pernah dikirim ke server.">
+<meta name="theme-color" content="#3D5A2A">
+<meta property="og:title" content="Sealed Message · WEACRYPT">
+<meta property="og:description" content="Segel pesan rahasia jadi link terenkripsi AES-256-GCM. Kunci ada di URL fragment, tidak pernah dikirim ke server.">
+<meta property="og:image" content="assets/img/og-image.png">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/tools.css">
+</head>
+<body class="page-seal">
+<a class="skip" href="#main">Lewati ke konten</a>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="index.html"><span data-icon="logo"></span><span>WEACRYPT</span></a>
+    <nav class="topbar-nav" aria-label="Navigasi utama">
+      <a href="dashboard.html" class="hide-sm">Control Room</a>
+      <details class="navmenu">
+        <summary aria-current="true">Alat</summary>
+        <div class="navmenu-list">
+          <a href="dashboard.html" class="show-sm"><span data-icon="dashboard"></span><span>Control Room<span class="hint">Langit, entropi, ledger</span></span></a>
+          <a href="generate.html"><span data-icon="forge"></span><span>Key Forge<span class="hint">Password, passphrase, PIN, kunci</span></span></a>
+          <a href="breach.html"><span data-icon="radar"></span><span>Breach Radar<span class="hint">Cek kebocoran password</span></span></a>
+          <a href="seal.html" aria-current="page"><span data-icon="seal"></span><span>Sealed Message<span class="hint">Segel pesan jadi link</span></span></a>
+          <a href="open.html"><span data-icon="unlock"></span><span>Buka pesan<span class="hint">Buka link atau blok tersegel</span></span></a>
+          <a href="locker.html"><span data-icon="locker"></span><span>File Locker<span class="hint">Kunci file dengan AES-256</span></span></a>
+          <a href="split.html"><span data-icon="split"></span><span>Secret Splitter<span class="hint">Pecah seed phrase</span></span></a>
+          <a href="ledger.html"><span data-icon="ledger"></span><span>Entropy Ledger<span class="hint">Rantai aktivitas tamper-evident</span></span></a>
+          <a href="lab.html"><span data-icon="lab"></span><span>Attack Lab<span class="hint">Serangan nyata dan uji acak</span></span></a>
+          <a href="verify.html"><span data-icon="verify"></span><span>Integrity Checker<span class="hint">Hash dan cocokkan file</span></span></a>
+          <a href="about.html" class="show-sm"><span data-icon="about"></span><span>Tentang<span class="hint">Cara kerja, privasi, FAQ</span></span></a>
+        </div>
+      </details>
+      <a href="about.html" class="hide-sm">Tentang</a>
+    </nav>
+    <div data-weather-chip></div>
+  </div>
+</header>
+<main id="main" class="wrap tool-page">
+  <section class="tool-hero">
+    <div>
+      <p class="eyebrow">Sealed Message</p>
+      <h1>Kirim rahasia lewat link yang cuma bisa dibuka penerima.</h1>
+      <p class="lede">Pesan dienkripsi AES-256-GCM di browsermu. Hasilnya ada di bagian <code>#</code> link, yang tidak pernah dikirim browser ke server mana pun.</p>
+    </div>
+  </section>
+
+  <section class="howto" aria-label="Cara pakai halaman ini">
+    <details class="howto-box" data-howto="seal" open>
+      <summary><span class="howto-icon" data-icon="about"></span><span class="howto-title">Cara pakai</span><span class="howto-count">4 langkah</span></summary>
+      <ol class="howto-steps">
+        <li><span class="howto-num" aria-hidden="true">1</span><div><strong>Tulis pesan</strong><p>Misalnya password WiFi atau kredensial akun tim. Maksimal 4.000 karakter.</p></div></li>
+        <li><span class="howto-num" aria-hidden="true">2</span><div><strong>Pilih cara membuka</strong><p>Link saja: praktis, siapa pun yang punya link bisa membuka. Link + passphrase: lebih aman, kirim passphrase lewat jalur lain.</p></div></li>
+        <li><span class="howto-num" aria-hidden="true">3</span><div><strong>Tekan Segel pesan</strong><p>Salin link, tampilkan QR, atau salin blok armored bila chat memotong link.</p></div></li>
+        <li><span class="howto-num" aria-hidden="true">4</span><div><strong>Kirim ke penerima</strong><p>Penerima membuka link (atau menempel blok armored) di halaman Buka pesan.</p></div></li>
+      </ol>
+    </details>
+  </section>
+
+  <div class="banner banner-info" id="file-notice" hidden>
+    <span data-icon="alert"></span>
+    <p>Link hanya bisa dibuka penerima bila situs ini di-hosting (misal GitHub Pages). Untuk sekarang, kirim blok armored.</p>
+  </div>
+
+  <div class="tool-grid">
+    <section class="panel" aria-labelledby="compose-title">
+      <h2 id="compose-title" class="panel-title">Tulis pesan</h2>
+      <form id="form-seal" novalidate>
+        <div class="field">
+          <label for="msg">Pesan <span class="hint">Contoh: password WiFi, kredensial akun tim, nomor rekening.</span></label>
+          <textarea id="msg" class="secret-input" rows="6" autocomplete="off" spellcheck="false" autocapitalize="off"></textarea>
+          <p class="counter" id="msg-counter" aria-live="polite">0 / 4.000 karakter</p>
+        </div>
+
+        <fieldset class="radio-cards">
+          <legend class="label">Cara membuka</legend>
+          <label class="radio-card"><input type="radio" name="mode" value="r" checked><strong>Link saja</strong><span>Kunci acak ikut di link. Praktis, tapi siapa pun yang memegang link bisa membuka pesan.</span></label>
+          <label class="radio-card"><input type="radio" name="mode" value="p"><strong>Link + passphrase</strong><span>Kunci diturunkan dari passphrase (PBKDF2, 600.000 iterasi). Kirim passphrase lewat kanal lain. Link bocor pun tidak cukup.</span></label>
+        </fieldset>
+
+        <div id="pass-block" hidden>
+          <div class="field">
+            <label for="pass">Passphrase <span class="hint">Minimal 12 karakter. Kirim ke penerima lewat kanal berbeda, misal telepon.</span></label>
+            <div class="field-row">
+              <input type="password" id="pass" class="secret-input" autocomplete="off" spellcheck="false" autocapitalize="off" autocorrect="off">
+              <button type="button" class="btn btn-secondary" id="pass-toggle" aria-pressed="false" aria-controls="pass"><span data-icon="eye"></span><span>Tampilkan</span></button>
+            </div>
+          </div>
+          <div id="pass-strength" class="field"></div>
+          <button type="button" class="btn btn-secondary" id="btn-genpass" data-needs-crypto>Buat passphrase kuat</button>
+        </div>
+
+        <div class="field hint-field">
+          <label for="hint">Catatan untuk penerima (opsional) <span class="hint">Ikut terenkripsi. Penerima melihatnya setelah segel dibuka.</span></label>
+          <input type="text" id="hint" maxlength="120" autocomplete="off">
+        </div>
+        <p class="error-text" id="seal-error" role="alert"></p>
+        <button type="submit" class="btn btn-primary" id="btn-seal" data-needs-crypto>Segel pesan</button>
+      </form>
+    </section>
+
+    <section class="panel output-panel" aria-labelledby="sealed-title">
+      <h2 id="sealed-title" class="panel-title">Pesan tersegel</h2>
+      <div class="seal-anim" id="seal-anim" aria-hidden="true" hidden>
+        <div class="seal-text" id="seal-anim-text"></div>
+        <div class="seal-lamp"><span class="seal-cap"></span><span class="seal-glass"><span class="seal-blob"></span></span><span class="seal-base"></span></div>
+        <button type="button" class="btn btn-ghost btn-sm seal-skip" id="btn-anim-skip">Lewati</button>
+      </div>
+      <div id="sealed-empty" class="empty-state">
+        <p>Belum ada pesan yang disegel. Hasilnya muncul di sini sebagai link, QR, dan blok armored.</p>
+      </div>
+      <div id="sealed-out" hidden>
+        <p class="label" id="link-label">Link</p>
+        <div id="link-out" role="group" aria-labelledby="link-label"></div>
+        <div class="row action-row">
+          <button type="button" class="btn btn-secondary" id="btn-share" hidden><span data-icon="share"></span>Bagikan</button>
+        </div>
+        <figure class="qr-figure" id="qr-figure" hidden>
+          <canvas id="qr" width="240" height="240" role="img" aria-label="QR code link pesan tersegel"></canvas>
+          <figcaption class="hint">Pindai untuk membuka link di HP penerima.</figcaption>
+        </figure>
+        <p class="hint" id="qr-note" hidden></p>
+        <p class="label" id="armor-label">Blok armored</p>
+        <div id="armor-out" role="group" aria-labelledby="armor-label"></div>
+        <div class="status status-warn warn-honest">
+          <span data-icon="alert"></span>
+          <p id="warn-text"></p>
+        </div>
+        <div id="stamp-out" hidden></div>
+        <p class="hint">Stempel cuaca juga ikut terenkripsi di dalam pesan. Hanya penerima yang melihatnya.</p>
+      </div>
+    </section>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Data cuaca: <a href="https://openweathermap.org/" rel="noopener">OpenWeatherMap</a>. Cek kebocoran: <a href="https://haveibeenpwned.com/Passwords" rel="noopener">Have I Been Pwned, Pwned Passwords</a>. Wordlist: <a href="https://www.eff.org/dice" rel="noopener">EFF</a> (CC BY 3.0 US). Inspirasi: Cloudflare LavaRand.</p>
+    <p>Dibuat oleh Nafhan. Semua alat berjalan di browsermu, tanpa akun, tanpa server. <a href="about.html">Cara kerja dan privasi</a>.</p>
+  </div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js" integrity="sha384-mZT2gIty7ZDdOGkxfP6joZcYdMW1Jvj9dRlfpTmaJAKKXTqzygtB22k7FLe+KZC1" crossorigin="anonymous" referrerpolicy="no-referrer" async></script>
+<script src="js/config.js"></script>
+<script src="js/core/ew.js"></script>
+<script src="js/core/weather.js"></script>
+<script src="js/core/theme.js"></script>
+<script src="js/core/crypto.js"></script>
+<script src="js/core/entropy.js"></script>
+<script src="js/core/strength.js"></script>
+<script src="js/data/wordlist-eff.js"></script>
+<script src="js/data/common-passwords.js"></script>
+<script src="js/workers/crack-worker.js"></script>
+<script src="js/core/ledger.js"></script>
+<script src="js/core/ui.js"></script>
+<script src="js/pages/seal.js"></script>
+</body>
+</html>

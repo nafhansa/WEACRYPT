@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="id" data-sky="clouds" data-time="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://api.openweathermap.org https://api.pwnedpasswords.com; worker-src blob:; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Key Forge · WEACRYPT</title>
+<meta name="description" content="Buat password, passphrase, PIN, dan kunci kriptografi yang tidak bisa ditebak, langsung di browser.">
+<meta name="theme-color" content="#3D5A2A">
+<meta property="og:title" content="Key Forge · WEACRYPT">
+<meta property="og:description" content="Buat password, passphrase, PIN, dan kunci kriptografi yang tidak bisa ditebak, langsung di browser.">
+<meta property="og:image" content="assets/img/og-image.png">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/tools.css">
+</head>
+<body class="page-generate">
+<a class="skip" href="#main">Lewati ke konten</a>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="index.html"><span data-icon="logo"></span><span>WEACRYPT</span></a>
+    <nav class="topbar-nav" aria-label="Navigasi utama">
+      <a href="dashboard.html" class="hide-sm">Control Room</a>
+      <details class="navmenu">
+        <summary aria-current="true">Alat</summary>
+        <div class="navmenu-list">
+          <a href="dashboard.html" class="show-sm"><span data-icon="dashboard"></span><span>Control Room<span class="hint">Langit, entropi, ledger</span></span></a>
+          <a href="generate.html" aria-current="page"><span data-icon="forge"></span><span>Key Forge<span class="hint">Password, passphrase, PIN, kunci</span></span></a>
+          <a href="breach.html"><span data-icon="radar"></span><span>Breach Radar<span class="hint">Cek kebocoran password</span></span></a>
+          <a href="seal.html"><span data-icon="seal"></span><span>Sealed Message<span class="hint">Segel pesan jadi link</span></span></a>
+          <a href="open.html"><span data-icon="unlock"></span><span>Buka pesan<span class="hint">Buka link atau blok tersegel</span></span></a>
+          <a href="locker.html"><span data-icon="locker"></span><span>File Locker<span class="hint">Kunci file dengan AES-256</span></span></a>
+          <a href="split.html"><span data-icon="split"></span><span>Secret Splitter<span class="hint">Pecah seed phrase</span></span></a>
+          <a href="ledger.html"><span data-icon="ledger"></span><span>Entropy Ledger<span class="hint">Rantai aktivitas tamper-evident</span></span></a>
+          <a href="lab.html"><span data-icon="lab"></span><span>Attack Lab<span class="hint">Serangan nyata dan uji acak</span></span></a>
+          <a href="verify.html"><span data-icon="verify"></span><span>Integrity Checker<span class="hint">Hash dan cocokkan file</span></span></a>
+          <a href="about.html" class="show-sm"><span data-icon="about"></span><span>Tentang<span class="hint">Cara kerja, privasi, FAQ</span></span></a>
+        </div>
+      </details>
+      <a href="about.html" class="hide-sm">Tentang</a>
+    </nav>
+    <div data-weather-chip></div>
+  </div>
+</header>
+<main id="main" class="wrap tool-page">
+  <section class="tool-hero">
+    <div>
+      <p class="eyebrow">Key Forge</p>
+      <h1>Buat kunci yang tidak bisa ditebak.</h1>
+      <p class="lede">Password, passphrase, PIN, dan kunci kriptografi dari 256 bit CSPRNG browser, dicampur langit Bandung supaya setiap hasil punya cerita.</p>
+    </div>
+  </section>
+
+  <section class="howto" aria-label="Cara pakai halaman ini">
+    <details class="howto-box" data-howto="generate" open>
+      <summary><span class="howto-icon" data-icon="about"></span><span class="howto-title">Cara pakai</span><span class="howto-count">4 langkah</span></summary>
+      <ol class="howto-steps">
+        <li><span class="howto-num" aria-hidden="true">1</span><div><strong>Pilih jenis</strong><p>Password, Passphrase (kata acak yang mudah diingat), PIN, Kunci kripto, atau Bulk untuk membuat banyak sekaligus.</p></div></li>
+        <li><span class="howto-num" aria-hidden="true">2</span><div><strong>Atur sesuai kebutuhan</strong><p>Geser panjang atau jumlah kata dan pilih jenis karakter. Angka bit dan estimasi waktu crack langsung berubah.</p></div></li>
+        <li><span class="howto-num" aria-hidden="true">3</span><div><strong>Tekan tombol Buat</strong><p>Hasil muncul tersembunyi. Tekan Tampilkan untuk melihat atau Salin; clipboard dicoba dikosongkan setelah 30 detik.</p></div></li>
+        <li><span class="howto-num" aria-hidden="true">4</span><div><strong>Simpan di password manager</strong><p>WEACRYPT tidak menyimpan hasilnya. Ledger hanya mencatat jenis, panjang, dan bit.</p></div></li>
+      </ol>
+    </details>
+  </section>
+
+  <div class="tool-grid">
+    <section class="panel" aria-labelledby="opt-title">
+      <h2 id="opt-title" class="panel-title">Pengaturan</h2>
+      <div class="tabs">
+        <div class="tablist" role="tablist" aria-label="Mode generator">
+          <button role="tab" id="tab-password" data-tab="password" aria-controls="pane-password" aria-selected="true">Password</button>
+          <button role="tab" id="tab-passphrase" data-tab="passphrase" aria-controls="pane-passphrase" aria-selected="false" tabindex="-1">Passphrase</button>
+          <button role="tab" id="tab-pin" data-tab="pin" aria-controls="pane-pin" aria-selected="false" tabindex="-1">PIN</button>
+          <button role="tab" id="tab-key" data-tab="key" aria-controls="pane-key" aria-selected="false" tabindex="-1">Kunci kripto</button>
+          <button role="tab" id="tab-bulk" data-tab="bulk" aria-controls="pane-bulk" aria-selected="false" tabindex="-1">Bulk</button>
+        </div>
+
+        <div role="tabpanel" id="pane-password" aria-labelledby="tab-password">
+          <div class="field">
+            <label for="pw-length">Panjang</label>
+            <div class="range-row">
+              <input type="range" id="pw-length-range" min="8" max="128" value="20" aria-label="Panjang password (slider)">
+              <input type="number" id="pw-length" min="8" max="128" value="20" inputmode="numeric">
+            </div>
+          </div>
+          <fieldset class="checks">
+            <legend class="label">Jenis karakter</legend>
+            <label class="check"><input type="checkbox" id="pw-lower" checked> Huruf kecil (a-z)</label>
+            <label class="check"><input type="checkbox" id="pw-upper" checked> Huruf besar (A-Z)</label>
+            <label class="check"><input type="checkbox" id="pw-digits" checked> Angka (0-9)</label>
+            <label class="check"><input type="checkbox" id="pw-symbols" checked> Simbol (!@#…)</label>
+            <label class="check"><input type="checkbox" id="pw-similar" checked> Kecualikan karakter mirip (<span class="mono">Il1O0</span>)</label>
+          </fieldset>
+          <div class="field">
+            <label for="pw-exclude">Kecualikan simbol tertentu <span class="hint">Untuk situs yang menolak simbol tertentu. Contoh: <span class="mono">"'`\</span></span></label>
+            <input type="text" id="pw-exclude" class="mono" autocomplete="off" spellcheck="false" autocapitalize="off" maxlength="32">
+          </div>
+          <p class="hint" id="pw-charset-info" aria-live="polite"></p>
+        </div>
+
+        <div role="tabpanel" id="pane-passphrase" aria-labelledby="tab-passphrase" hidden>
+          <div class="field">
+            <label for="pp-words">Jumlah kata</label>
+            <div class="range-row">
+              <input type="range" id="pp-words-range" min="4" max="12" value="6" aria-label="Jumlah kata (slider)">
+              <input type="number" id="pp-words" min="4" max="12" value="6" inputmode="numeric">
+            </div>
+          </div>
+          <div class="field">
+            <label for="pp-sep">Pemisah</label>
+            <select id="pp-sep">
+              <option value="-">Tanda hubung ( - )</option>
+              <option value=".">Titik ( . )</option>
+              <option value=" ">Spasi</option>
+              <option value="_">Garis bawah ( _ )</option>
+            </select>
+          </div>
+          <label class="check"><input type="checkbox" id="pp-cap"> Kapitalisasi huruf pertama tiap kata</label>
+          <label class="check"><input type="checkbox" id="pp-num"> Tambahkan satu angka acak di akhir</label>
+          <p class="hint">Kata diambil dari EFF large wordlist (7.776 kata), ≈ 12,925 bit per kata.</p>
+        </div>
+
+        <div role="tabpanel" id="pane-pin" aria-labelledby="tab-pin" hidden>
+          <div class="field">
+            <label for="pin-length">Panjang PIN</label>
+            <div class="range-row">
+              <input type="range" id="pin-length-range" min="4" max="12" value="6" aria-label="Panjang PIN (slider)">
+              <input type="number" id="pin-length" min="4" max="12" value="6" inputmode="numeric">
+            </div>
+          </div>
+          <p class="hint">Pola lemah selalu ditolak: semua digit sama, berurutan naik atau turun, dan tahun 1950 sampai 2030.</p>
+        </div>
+
+        <div role="tabpanel" id="pane-key" aria-labelledby="tab-key" hidden>
+          <fieldset class="radio-cards" id="key-kind">
+            <legend class="label">Jenis kunci</legend>
+            <label class="radio-card"><input type="radio" name="key-kind" value="aes-hex" checked><strong>AES-256 (hex)</strong><span>64 karakter heksadesimal, 256 bit</span></label>
+            <label class="radio-card"><input type="radio" name="key-kind" value="aes-b64"><strong>AES-256 (base64url)</strong><span>43 karakter, 256 bit</span></label>
+            <label class="radio-card"><input type="radio" name="key-kind" value="token"><strong>Token API</strong><span>base64url dari 32 byte acak</span></label>
+            <label class="radio-card"><input type="radio" name="key-kind" value="uuid"><strong>UUID v4</strong><span>122 bit acak, format standar</span></label>
+          </fieldset>
+        </div>
+
+        <div role="tabpanel" id="pane-bulk" aria-labelledby="tab-bulk" hidden>
+          <div class="field">
+            <label for="bulk-mode">Buat banyak untuk mode</label>
+            <select id="bulk-mode">
+              <option value="password">Password (pakai pengaturan tab Password)</option>
+              <option value="passphrase">Passphrase (pakai pengaturan tab Passphrase)</option>
+              <option value="pin">PIN (pakai pengaturan tab PIN)</option>
+              <option value="key">Kunci kripto (pakai pilihan tab Kunci kripto)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="bulk-count">Jumlah</label>
+            <div class="range-row">
+              <input type="range" id="bulk-count-range" min="1" max="50" value="10" aria-label="Jumlah (slider)">
+              <input type="number" id="bulk-count" min="1" max="50" value="10" inputmode="numeric">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row action-row">
+        <button type="button" class="btn btn-primary" id="btn-generate" data-needs-crypto>Buat password</button>
+        <label class="check"><input type="checkbox" id="opt-ledger" checked> Simpan ke ledger</label>
+      </div>
+      <p class="hint">Ledger hanya mencatat metadata (jenis, panjang, bit). Password-nya tidak pernah disimpan.</p>
+    </section>
+
+    <section class="panel output-panel" aria-labelledby="out-title">
+      <div class="row row-between">
+        <h2 id="out-title" class="panel-title">Hasil</h2>
+        <label class="check small"><input type="checkbox" id="opt-color" checked> Warnai per jenis karakter</label>
+      </div>
+      <div id="out-single">
+        <div id="secret-out"></div>
+        <div class="row action-row">
+          <button type="button" class="btn btn-secondary" id="btn-regen" data-needs-crypto><span data-icon="refresh"></span>Buat ulang</button>
+        </div>
+      </div>
+      <div id="out-bulk" hidden>
+        <ol class="bulk-list mono" id="bulk-list" aria-label="Hasil bulk"></ol>
+        <div class="row action-row">
+          <button type="button" class="btn btn-secondary" id="btn-bulk-reveal" aria-pressed="false"><span data-icon="eye"></span><span>Tampilkan</span></button>
+          <button type="button" class="btn btn-secondary" id="btn-bulk-copy"><span data-icon="copy"></span>Salin semua</button>
+          <button type="button" class="btn btn-secondary" id="btn-bulk-download"><span data-icon="download"></span>Unduh .txt</button>
+        </div>
+      </div>
+
+      <div id="strength-out" class="out-strength"></div>
+      <p class="bits-line" id="bits-line" aria-live="polite"></p>
+
+      <div class="table-wrap">
+        <table class="crack-table">
+          <caption class="sr-only">Estimasi waktu crack rata-rata</caption>
+          <thead><tr><th scope="col">Model penyerang</th><th scope="col">Tebakan</th><th scope="col">Waktu rata-rata</th></tr></thead>
+          <tbody id="crack-body"></tbody>
+        </table>
+      </div>
+      <p class="hint">Rumus: waktu = 2<sup>bit − 1</sup> ÷ tebakan per detik (rata-rata setengah ruang kunci).</p>
+      <p class="nist" id="nist-note"></p>
+      <div id="stamp-out" hidden></div>
+
+      <details class="disclosure why">
+        <summary>Kenapa aman?</summary>
+        <div class="disclosure-body">
+          <svg class="mixer-diagram" viewBox="0 0 560 220" role="img" aria-labelledby="mix-t mix-d">
+            <title id="mix-t">Diagram mixer WEACRYPT</title>
+            <desc id="mix-d">256 bit dari crypto.getRandomValues, digest cuaca, dan digest jitter digabung lalu diolah HKDF-SHA256 menjadi output.</desc>
+            <g class="mx-box mx-os"><rect x="10" y="14" width="190" height="52" rx="10"/><text x="105" y="38">osSeed: 256 bit</text><text x="105" y="56" class="mx-small">crypto.getRandomValues</text></g>
+            <g class="mx-box mx-pub"><rect x="10" y="84" width="190" height="52" rx="10"/><text x="105" y="108">weatherDigest</text><text x="105" y="126" class="mx-small">SHA-256 cuaca, publik</text></g>
+            <g class="mx-box mx-pub"><rect x="10" y="154" width="190" height="52" rx="10"/><text x="105" y="178">jitterDigest</text><text x="105" y="196" class="mx-small">SHA-256 gerakanmu</text></g>
+            <path class="mx-line mx-line-os" d="M200 40 C 250 40, 250 110, 300 110"/>
+            <path class="mx-line" d="M200 110 L 300 110"/>
+            <path class="mx-line" d="M200 180 C 250 180, 250 110, 300 110"/>
+            <g class="mx-box mx-hkdf"><rect x="300" y="80" width="130" height="60" rx="10"/><text x="365" y="106">HKDF-SHA256</text><text x="365" y="124" class="mx-small">salt 16 byte acak</text></g>
+            <path class="mx-line mx-line-os" d="M430 110 L 470 110"/>
+            <g class="mx-box mx-out"><rect x="470" y="84" width="80" height="52" rx="10"/><text x="510" y="115">output</text></g>
+          </svg>
+          <p>Keamanan datang dari <strong>osSeed</strong>: 256 bit dari CSPRNG sistem operasi lewat <code>crypto.getRandomValues()</code>. Cuaca Bandung dan gerakanmu ikut di-hash supaya hasilnya unik dan bisa diberi stempel, tapi keduanya bisa ditebak, jadi tidak dihitung sebagai keamanan.</p>
+          <p>Pemilihan karakter memakai <em>rejection sampling</em>: byte yang akan membuat distribusi berat sebelah dibuang, jadi setiap karakter punya peluang yang persis sama. Coba uji sendiri di <a href="lab.html#randomness">Attack Lab</a>.</p>
+        </div>
+      </details>
+    </section>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Data cuaca: <a href="https://openweathermap.org/" rel="noopener">OpenWeatherMap</a>. Cek kebocoran: <a href="https://haveibeenpwned.com/Passwords" rel="noopener">Have I Been Pwned, Pwned Passwords</a>. Wordlist: <a href="https://www.eff.org/dice" rel="noopener">EFF</a> (CC BY 3.0 US). Inspirasi: Cloudflare LavaRand.</p>
+    <p>Dibuat oleh Nafhan. Semua alat berjalan di browsermu, tanpa akun, tanpa server. <a href="about.html">Cara kerja dan privasi</a>.</p>
+  </div>
+</footer>
+<script src="js/config.js"></script>
+<script src="js/core/ew.js"></script>
+<script src="js/core/weather.js"></script>
+<script src="js/core/theme.js"></script>
+<script src="js/core/crypto.js"></script>
+<script src="js/core/entropy.js"></script>
+<script src="js/core/strength.js"></script>
+<script src="js/data/wordlist-eff.js"></script>
+<script src="js/workers/crack-worker.js"></script>
+<script src="js/core/ledger.js"></script>
+<script src="js/core/ui.js"></script>
+<script src="js/pages/generate.js"></script>
+</body>
+</html>

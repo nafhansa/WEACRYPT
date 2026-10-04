@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+
+# Node / Vercel
+node_modules/
+.vercel/
+.env
+.env*.local
+
+# Hasil uji lokal
+*.ewall
+!python/tests/fixtures/*.ewall
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
